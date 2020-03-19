@@ -6,6 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Invoice extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'document_number',
+        'document_type',
+        'expired_at',
+        'delivery_at',
+        'subtotal',
+        'discount_rate',
+        'discount',
+        'net',
+        'tax_rate',
+        'tax',
+        'total'
+    ];
 
     /**
      * Get the user that owns the invoice.

@@ -11,6 +11,13 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        factory(\App\Models\User::class)->create([
+            'first_name' => 'Admin',
+            'last_name' => 'User',
+            'email' => 'admin@demo.com',
+            'password' => 'admin',
+        ]);
+
         factory(\App\Models\User::class, 25)->create();
     }
 }
