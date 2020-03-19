@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Invoice;
+use App\Models\Invoice;
 use Faker\Generator as Faker;
 
 $factory->define(Invoice::class, function (Faker $faker) {
@@ -18,7 +18,7 @@ $factory->define(Invoice::class, function (Faker $faker) {
         'tax_rate' => $faker->numberBetween(0, 100),
         'tax' => $faker->randomFloat(2, 100, $max = 999999),
         'total' => $faker->randomFloat(2, 100, $max = 999999),
-        'user_id' => factory(\App\User::class)->create()->id,
-        'customer_id' => factory(\App\User::class)->create()->id
+        'user_id' => factory(\App\Models\User::class)->create()->id,
+        'customer_id' => factory(\App\Models\User::class)->create()->id
     ];
 });
