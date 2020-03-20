@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
-
 Auth::routes(['register' => false]);
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
+
+    Route::resource('items', 'ItemController');
+
+    Route::resource('invoices', 'InvoiceController');
+});
