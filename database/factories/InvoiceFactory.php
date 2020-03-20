@@ -15,7 +15,7 @@ $factory->define(Invoice::class, function (Faker $faker) {
         'discount_rate' => $faker->numberBetween(0, 100),
         'discount' => $faker->randomFloat(2, 100, $max = 999999),
         'net' => $faker->randomFloat(2, 100, $max = 999999),
-        'tax_rate' => $faker->numberBetween(0, 100),
+        'tax_rate' => 19,
         'tax' => $faker->randomFloat(2, 100, $max = 999999),
         'total' => $faker->randomFloat(2, 100, $max = 999999),
         'user_id' => factory(\App\Models\User::class)->create()->id,

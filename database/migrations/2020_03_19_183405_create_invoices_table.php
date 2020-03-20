@@ -19,7 +19,7 @@ class CreateInvoicesTable extends Migration
             $table->string('document_number');
             $table->bigInteger('document_type');
             $table->dateTime('expired_at');
-            $table->dateTime('delivery_at');
+            $table->dateTime('delivery_at')->nullable();
             $table->decimal('subtotal', 12, 2)->default(0);
             $table->decimal('discount_rate', 12, 2)->default(0);
             $table->decimal('discount', 12, 2)->default(0);

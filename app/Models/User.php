@@ -48,4 +48,61 @@ class User extends Authenticatable
     {
         return $this->hasMany(Invoice::class);
     }
+
+    /**
+     * Scope a query to only include items of a given name.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $identification
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOfIdentification($query, $identification)
+    {
+        if ($identification != '') {
+            return $query->where('identification', 'LIKE', "%$identification%");
+        }
+    }
+
+    /**
+     * Scope a query to only include items of a given name.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $first_name
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOfFistName($query, $first_name)
+    {
+        if ($first_name != '') {
+            return $query->where('first_name', 'LIKE', "%$first_name%");
+        }
+    }
+
+    /**
+     * Scope a query to only include items of a given name.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $last_name
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOfLastName($query, $last_name)
+    {
+        if ($last_name != '') {
+            return $query->where('last_name', 'LIKE', "%$last_name%");
+        }
+    }
+
+    /**
+     * Scope a query to only include items of a given name.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $email
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOfEmail($query, $email)
+    {
+        if ($email != '') {
+            return $query->where('email', 'LIKE', "%$email%");
+        }
+    }
+
 }

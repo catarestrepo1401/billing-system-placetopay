@@ -148,4 +148,7 @@ return [
 
     'attributes' => [],
 
+    'empty_option' =>[
+        'customer' => 'Select a customer...'
+    ]
 ];
