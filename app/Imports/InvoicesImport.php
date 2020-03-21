@@ -3,33 +3,62 @@
 namespace App\Imports;
 
 use App\Models\Invoice;
-use Maatwebsite\Excel\Concerns\ToModel;
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\ToCollection;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
-class InvoicesImport implements ToModel
+class InvoicesImport implements ToCollection
 {
     /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
-    public function model(array $row)
+     * @param array $row
+     *
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
+    public function collection(Collection $rows)
     {
-        return new Invoice([
-            'document_number' => $row[0],
-            'document_type'   => $row[1],
-            'expired_at'      => $row[2],
-            'delivery_at'     => $row[3],
-            'subtotal'        => $row[4],
-            'discount_rate'   => $row[5],
-            'discount'        => $row[6],
-            'net'             => $row[7],
-            'tax_rate'        => $row[8],
-            'tax'             => $row[9],
-            'total'           => $row[10],
-            'user_id'         => $row[11],
-            'customer_id'     => $row[12],
-            'created_at'      => $row[13],
-            'updated_at'      => $row[14],
-        ]);
+        foreach ($rows as $row) {
+            $invoice = Invoice::where('document_number', $row[0])->first();
+
+            if (!$invoice) {
+                $newInvoice = new Invoice();
+
+                $newInvoice->fillable([
+                    'document_number',
+                    'document_type',
+                    'expired_at',
+                    'delivery_at',
+                    'subtotal',
+                    'discount_rate',
+                    'discount',
+                    'net',
+                    'tax_rate',
+                    'tax',
+                    'total',
+                    'created_at',
+                    'updated_at',
+                ]);
+
+                $newInvoice->fill([
+                    'document_number' => $row[0],
+                    'document_type' => $row[1],
+                    'expired_at' => Date::excelToDateTimeObject($row[2]),
+                    'delivery_at' => Date::excelToDateTimeObject($row[3]),
+                    'subtotal' => $row[4],
+                    'discount_rate' => $row[5],
+                    'discount' => $row[6],
+                    'net' => $row[7],
+                    'tax_rate' => $row[8],
+                    'tax' => $row[9],
+                    'total' => $row[10],
+                    'created_at' => Date::excelToDateTimeObject($row[13]),
+                    'updated_at' => Date::excelToDateTimeObject($row[14]),
+                ]);
+
+                $newInvoice->user()->associate($row[11]);
+                $newInvoice->customer()->associate($row[12]);
+
+                $newInvoice->save();
+            }
+        }
     }
 }

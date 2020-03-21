@@ -28,8 +28,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('invoices', 'ExportController@invoices')->name('invoices');
     });
 
-    Route::prefix('import')->as('import.')->group(function () {
-        Route::post('users', 'ImportController@users')->name('users');
+    Route::prefix('import')->name('import.')->group(function () {
         Route::post('invoices', 'ImportController@invoices')->name('invoices');
+        Route::post('users', 'ImportController@users')->name('users');
     });
 });

@@ -16,7 +16,7 @@ class CreateInvoicesTable extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('document_number');
+            $table->string('document_number')->unique();
             $table->bigInteger('document_type');
             $table->dateTime('expired_at');
             $table->dateTime('delivery_at')->nullable();

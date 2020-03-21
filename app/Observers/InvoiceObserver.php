@@ -15,9 +15,17 @@ class InvoiceObserver
      */
     public function creating(Invoice $invoice)
     {
-        $invoice->document_number = Str::random(8);
-        $invoice->document_type = 33;
-        $invoice->expired_at = now()->addDays(30);
+        if (!$invoice->document_number){
+            $invoice->document_number = Str::random(8);
+        }
+
+        if (!$invoice->document_type){
+            $invoice->document_type = 33;
+        }
+
+        if (!$invoice->expired_at){
+            $invoice->expired_at = now()->addDays(30);
+        }
 
         if (auth()->check()) {
             $invoice->user()->associate(auth()->user());

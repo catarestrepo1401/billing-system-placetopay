@@ -24,23 +24,8 @@ class ImportRequest extends FormRequest
      */
     public function rules()
     {
-        /*return [
-            'file' => 'required|mimes:xlsx',
-        ];*/
-
-        /*return [
-            'file'          => 'required',
-            'extension'     => 'required|in:xlsx',
-        ];*/
-
-        /*$extensions = array("xls","xlsx","xlm","xla","xlc","xlt","xlw");
-
-        $result = array($request->file('import_file')->getClientOriginalExtension());
-
-        if(in_array($result[0],$extensions)){
-            // Do something when Succeeded
-        }else{
-            // Do something when it fails
-        }*/
+        return [
+            'file' => 'required|mimes:xlsx,xls',
+        ];
     }
 }

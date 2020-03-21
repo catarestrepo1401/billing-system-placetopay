@@ -18,15 +18,22 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <h1>Instructions to import:</h1>
+                        <p> It is important to know that if the invoice already exists, it will not be imported again.
+                            The supported formats for bulk importing invoices are as follows: xls, xlsx.
+                            The imported fields are as follows: 'document_number', 'document_type', 'expired_at',
+                            'delivery_at', 'subtotal', 'discount_rate', 'discount', 'net', 'tax_rate', 'tax', ' total ',
+                            ' created_at ',' updated_at '. In other words, you must remove the 'id' field from the excel
+                            file to later be able to import.
+                        </p>
                         <tr>
                             <td>{{ __('Invoices') }}</td>
                             <td>
-                                {!! Form::open(['route' => 'import.invoices', 'method' => 'POST']) !!}
-                                {!! Field::file('file',  ['tpl' => 'themes/bootstrap4/fields/unlabeled'])  !!}
-                                {!! Form::close() !!}
-                                    <a class="btn btn-primary" href="{{ route('import.invoices') }}" role="submit">
-                                        {{ __('Import') }}
-                                    </a>
+                                <form action="{{ route('import.invoices') }}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="file" name="file">
+                                    <button type="submit" class="btn btn-primary">Import</button>
+                                </form>
                             </td>
                             <td>
                                 <a class="btn btn-success" href="{{ route('export.invoices') }}" role="submit">
@@ -37,14 +44,7 @@
 
                         <tr>
                             <td>{{ __('Users') }}</td>
-                            <td>
-                                {!! Form::open(['route' => 'import.users', 'method' => 'POST']) !!}
-                                {!! Field::file('file',  ['tpl' => 'themes/bootstrap4/fields/unlabeled'])  !!}
-                                {!! Form::close() !!}
-                                <a class="btn btn-primary" href="{{ route('import.users') }}" role="submit">
-                                    {{ __('Import') }}
-                                </a>
-                            </td>
+
                             <td>
                                 <a class="btn btn-success" href="{{ route('export.users') }}" role="submit">
                                     {{ __('Export') }}
