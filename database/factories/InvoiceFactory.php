@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Invoice::class, function (Faker $faker) {
     return [
-        'document_number' => $faker->numberBetween(10000, 99999),
+        'document_number' => $faker->unique()->numberBetween(10000, 99999),
         'document_type' => $faker->numberBetween(10, 20),
         'expired_at' => now()->addDays(rand(15, 30)),
         'delivery_at' => now()->addDays(rand(15, 30)),
