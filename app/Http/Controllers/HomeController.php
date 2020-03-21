@@ -15,4 +15,14 @@ class HomeController extends Controller
     {
         return view('index');
     }
+
+    /**
+     * Show import and export page.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function importExport()
+    {
+        return view('import-export');
+    }
 }

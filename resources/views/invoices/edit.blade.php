@@ -119,7 +119,7 @@
                             <td>({{ round($invoice->tax_rate) }}%) ${{ number_format($invoice->tax, 2, ',', '.') }}</td>
                         </tr>
                         <tr>
-                            <th>{{ __('total') }}</th>
+                            <th>{{ __('Total') }}</th>
                             <td>${{ number_format($invoice->total, 2, ',', '.') }}</td>
                         </tr>
                     </table>

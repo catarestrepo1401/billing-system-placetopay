@@ -31,6 +31,19 @@
                         {{ __('Users') }}
                     </a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a id="settingDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ __('Settings') }}
+                        <span class="caret"></span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="settingDropdown">
+                        <a class="dropdown-item" href="{{ route('import-export') }}">
+                            {{ __('Import & Export') }}
+                        </a>
+                    </div>
+                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->
