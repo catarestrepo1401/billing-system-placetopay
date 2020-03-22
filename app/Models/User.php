@@ -50,6 +50,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the payments for the user.
+     */
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    /**
      * Scope a query to only include items of a given name.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query

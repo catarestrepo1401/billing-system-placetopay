@@ -27,6 +27,14 @@ class Invoice extends Model
     ];
 
     /**
+     * Get the payments for the invoice.
+     */
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    /**
      * Get the user that owns the invoice.
      */
     public function user()

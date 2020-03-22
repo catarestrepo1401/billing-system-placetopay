@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::prefix('checkouts')->name('checkouts.')->group(function () {
+    Route::get('/initialized/{invoice}', 'CheckoutController@index')->name('index');
+    Route::post('/execute/{invoice}', 'CheckoutController@execute')->name('execute');
+    Route::get('/process/{payment}', 'CheckoutController@process')->name('process');
+});
+
 Auth::routes(['register' => false]);
 
 Route::middleware(['auth'])->group(function () {
@@ -22,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('items', 'ItemController');
     Route::resource('invoices', 'InvoiceController');
     Route::resource('users', 'UserController');
+    Route::resource('payments', 'PaymentController');
 
     Route::prefix('export')->name('export.')->group(function () {
         Route::get('users', 'ExportController@users')->name('users');

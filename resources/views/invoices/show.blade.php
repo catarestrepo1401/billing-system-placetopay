@@ -21,7 +21,8 @@
             {!! Form::close() !!}
         </div>
     </div>
-    <div class="row">
+
+    <div class="row mb-4">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
@@ -66,7 +67,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12 mt-4">
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
                     <table class="table table-borderless table-sm">
@@ -82,6 +86,14 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @if ($invoice->items->isEmpty())
+                            <tr>
+                                <td colspan="7" class="text-center">
+                                    {{ __('No items have been added.') }}
+                                </td>
+                            </tr>
+                        @endif
+
                         @foreach($invoice->items as $item)
                             <tr>
                                 <td>{{ $item->type }}</td>
@@ -98,7 +110,54 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 offset-md-8 mt-4">
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h3>{{ __('Payments') }}</h3>
+                </div>
+                <div>
+                    <a href="{{ route('payments.create', ['invoice' => $invoice, 'total' => $invoice->total]) }}"
+                       class="btn btn-primary btn-sm">
+                        {{  __('Create') }}
+                    </a>
+                </div>
+            </div>
+
+            <table class="table table-sm">
+                <thead>
+                <tr>
+                    <th>{{ __('Date') }}</th>
+                    <th>{{ __('Identifier') }}</th>
+                    <th>{{ __('Method') }}</th>
+                    <th>{{ __('Amount') }}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($invoice->payments as $payment)
+                    <tr>
+                        <td>{{ $payment->created_at->toDateString() }}</td>
+                        <td>{{ $payment->identifier }}</td>
+                        <td>{{ __(ucfirst($payment->method)) }}</td>
+                        <td>${{ number_format($payment->amount, 2, ',', '.') }}</td>
+                        <td>
+                            <a href="{{ route('payments.show', $payment) }}" class="btn btn-primary btn-sm">
+                                {{ __('Details') }}
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+
+            <div class="alert alert-primary" role="alert">
+                <strong>{{ __('Payment link') }}</strong> {{ route('checkouts.index', $invoice->document_number) }}
+            </div>
+        </div>
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
                     <table class="table table-borderless table-sm">
@@ -117,7 +176,8 @@
                         </tr>
                         <tr>
                             <th>{{ __('Tax') }}</th>
-                            <td>({{ round($invoice->tax_rate) }}%) ${{ number_format($invoice->tax, 2, ',', '.') }}</td>
+                            <td>({{ round($invoice->tax_rate) }}%)
+                                ${{ number_format($invoice->tax, 2, ',', '.') }}</td>
                         </tr>
                         <tr>
                             <th>{{ __('total') }}</th>

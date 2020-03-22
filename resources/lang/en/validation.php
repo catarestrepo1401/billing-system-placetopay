@@ -149,6 +149,7 @@ return [
     'attributes' => [],
 
     'empty_option' =>[
-        'customer' => 'Select a customer...'
+        'customer' => 'Select a customer...',
+        'method' => 'Select a method...'
     ]
 ];
