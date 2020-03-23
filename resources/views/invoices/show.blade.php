@@ -145,7 +145,7 @@
                         <td>{{ $payment->identifier }}</td>
                         <td>{{ __(ucfirst($payment->method)) }}</td>
                         <td>${{ number_format($payment->amount, 2, ',', '.') }}</td>
-                        <td>{{ $payment->status }}</td>
+                        <td>{{ __(ucfirst($payment->status)) }}</td>
                         <td>
                             <a href="{{ route('payments.show', $payment) }}" class="btn btn-primary btn-sm">
                                 {{ __('Details') }}
@@ -183,7 +183,7 @@
                                 ${{ number_format($invoice->tax, 2, ',', '.') }}</td>
                         </tr>
                         <tr>
-                            <th>{{ __('total') }}</th>
+                            <th>{{ __('Total') }}</th>
                             <td>${{ number_format($invoice->total, 2, ',', '.') }}</td>
                         </tr>
                     </table>

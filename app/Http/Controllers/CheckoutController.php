@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Invoice;
 use App\Models\Payment;
 use Dnetix\Redirection\PlacetoPay;
+use Dnetix\Redirection\Entities\Status;
+use Dnetix\Redirection\Entities\Transaction;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
@@ -47,6 +49,8 @@ class CheckoutController extends Controller
         $payment->customer()->associate($invoice->customer);
         $payment->save();
 
+        //dd($payment);
+
         $response = $this->placetopay->request([
             'payment' => [
                 'reference' => $invoice->document_number,
@@ -65,6 +69,8 @@ class CheckoutController extends Controller
         if ($response->isSuccessful()) {
             $payment->update(['identifier' => $response->requestId]);
 
+            //dd($payment);
+
             return redirect()->to($response->processUrl());
         } else {
             dd($response->status()->message());
@@ -73,22 +79,31 @@ class CheckoutController extends Controller
 
     public function process(Request $request, Payment $payment)
     {
+        //dd($payment);
+
         $response = $this->placetopay->query($payment->identifier);
 
         $status = $response->status()->status();
 
+        //dd($payment);
         //dd($response);
         //dd($response->status()->status());
 
         if ($response->isSuccessful()) {
             if ($status == 'APPROVED') {
+                //dd($payment);
                 $payment->update(['status' => 'APPROVED']);
+                //dd($payment);
             } elseif ($status == 'REJECTED') {
+                //dd($payment);
                 $payment->update(['status' => 'REJECTED']);
+                //dd($payment);
             } elseif ($status == 'FAILED') {
+                //dd($payment);
                 $payment->update(['status' => 'FAILED']);
+                //dd($payment);
             } else {
-                dd('ESTADO NO SOPORTADO');
+                dd('NOT SUPPORTED STATUS');
             }
         }
     }
