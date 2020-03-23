@@ -38,7 +38,6 @@
                     <th>{{ __('Identifier') }}</th>
                     <th>{{ __('Method') }}</th>
                     <th>{{ __('Amount') }}</th>
-                    <th>{{ __('Available date') }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -49,7 +48,6 @@
                         <td>{{ $payment->identifier }}</td>
                         <td>{{ __(ucfirst($payment->method)) }}</td>
                         <td>${{ number_format($payment->amount, 2, ',', '.') }}</td>
-                        <td>{{ $payment->available_at }}</td>
                         <td>
                             <a href="{{ route('payments.show', $payment) }}" class="btn btn-primary btn-sm float-right">
                                 {{  __('Details') }}

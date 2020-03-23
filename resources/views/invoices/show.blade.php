@@ -86,6 +86,7 @@
                         </tr>
                         </thead>
                         <tbody>
+
                         @if ($invoice->items->isEmpty())
                             <tr>
                                 <td colspan="7" class="text-center">
@@ -133,6 +134,7 @@
                     <th>{{ __('Identifier') }}</th>
                     <th>{{ __('Method') }}</th>
                     <th>{{ __('Amount') }}</th>
+                    <th>{{ __('Status') }}</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -143,6 +145,7 @@
                         <td>{{ $payment->identifier }}</td>
                         <td>{{ __(ucfirst($payment->method)) }}</td>
                         <td>${{ number_format($payment->amount, 2, ',', '.') }}</td>
+                        <td>{{ $payment->status }}</td>
                         <td>
                             <a href="{{ route('payments.show', $payment) }}" class="btn btn-primary btn-sm">
                                 {{ __('Details') }}

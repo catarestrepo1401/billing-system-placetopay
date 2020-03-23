@@ -25,10 +25,6 @@
                             <th>{{ __('Amount') }}</th>
                             <td colspan="3">{{ $payment->amount }}</td>
                         </tr>
-                        <tr>
-                            <th>{{ __('Available date') }}</th>
-                            <td colspan="3">{{ $payment->available_at }}</td>
-                        </tr>
                     </table>
 
                     {!! Form::open(['route' => ['payments.destroy', $payment], 'method' => 'DELETE']) !!}

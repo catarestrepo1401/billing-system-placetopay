@@ -75,16 +75,21 @@ class CheckoutController extends Controller
     {
         $response = $this->placetopay->query($payment->identifier);
 
+        $status = $response->status()->status();
+
+        //dd($response);
+        //dd($response->status()->status());
+
         if ($response->isSuccessful()) {
-            if ($response->status()->isApproved()) {
-
-                $payment->update(['status' => 'finalizado']);
-                $payment->invoice()->update(['status' => 'pagada']);
+            if ($status == 'APPROVED') {
+                $payment->update(['status' => 'APPROVED']);
+            } elseif ($status == 'REJECTED') {
+                $payment->update(['status' => 'REJECTED']);
+            } elseif ($status == 'FAILED') {
+                $payment->update(['status' => 'FAILED']);
+            } else {
+                dd('ESTADO NO SOPORTADO');
             }
-        } else {
-
-            dd($response->status()->message());
-            $payment->update(['status' => 'fallido']);
         }
     }
 }

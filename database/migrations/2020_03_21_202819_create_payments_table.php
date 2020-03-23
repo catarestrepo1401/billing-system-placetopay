@@ -15,11 +15,10 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['unverified', 'pending', 'rejected', 'verified']);
+            $table->enum('status', ['approved', 'pending', 'rejected', 'failed']);
             $table->string('identifier')->unique()->nullable();
             $table->enum('method', ['debit_card', 'credit_card', 'cash', 'bank_payment', 'pse', 'pay_fees', 'bank_check', 'electronic_transfer', 'credit_note']);
             $table->decimal('amount', 12, 2)->default(0);
-            $table->dateTime('available_at');
 
             $table->unsignedBigInteger('invoice_id');
             $table->unsignedBigInteger('customer_id');
