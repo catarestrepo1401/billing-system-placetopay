@@ -8,6 +8,7 @@ use Dnetix\Redirection\PlacetoPay;
 use Dnetix\Redirection\Entities\Status;
 use Dnetix\Redirection\Entities\Transaction;
 use Illuminate\Http\Request;
+use Styde\Html\Facades\Alert;
 
 class CheckoutController extends Controller
 {
@@ -93,18 +94,36 @@ class CheckoutController extends Controller
             if ($status == 'APPROVED') {
                 //dd($payment);
                 $payment->update(['status' => 'APPROVED']);
+                $payment->update(['method']);
                 //dd($payment);
-            } elseif ($status == 'REJECTED') {
+            }
+            elseif ($status == 'REJECTED') {
                 //dd($payment);
                 $payment->update(['status' => 'REJECTED']);
+                $payment->update(['method']);
                 //dd($payment);
-            } elseif ($status == 'FAILED') {
+            }
+            elseif ($status == 'PENDING') {
+                    //dd($payment);
+                    $payment->update(['status' => 'PENDING']);
+                    $payment->update(['method']);
+            }
+            elseif ($status == 'FAILED') {
                 //dd($payment);
                 $payment->update(['status' => 'FAILED']);
+                $payment->update(['method']);
                 //dd($payment);
-            } else {
+            }
+            else {
                 dd('NOT SUPPORTED STATUS');
             }
+
+            return redirect()->route('checkouts.finalized', $payment);
         }
+    }
+
+    public function finalized(Payment $payment)
+    {
+        return view('checkouts.finalized', compact('payment'));
     }
 }

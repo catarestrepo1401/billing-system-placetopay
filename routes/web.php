@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,7 @@ Route::prefix('checkouts')->name('checkouts.')->group(function () {
     Route::get('/initialized/{invoice}', 'CheckoutController@index')->name('index');
     Route::post('/execute/{invoice}', 'CheckoutController@execute')->name('execute');
     Route::get('/process/{payment}', 'CheckoutController@process')->name('process');
+    Route::get('/checkouts/{payment}/finalized', 'CheckoutController@finalized')->name('finalized');
 });
 
 Auth::routes(['register' => false]);
