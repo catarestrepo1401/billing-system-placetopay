@@ -18,6 +18,6 @@ class UserSeeder extends Seeder
             'password' => 'admin',
         ]);
 
-        factory(\App\Models\User::class, 25)->create();
+        factory(\App\Models\User::class, 2)->create();
     }
 }

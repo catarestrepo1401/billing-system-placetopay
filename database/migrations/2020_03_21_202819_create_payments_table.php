@@ -17,7 +17,7 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->enum('status', ['approved', 'pending', 'rejected', 'failed']);
             $table->string('identifier')->unique()->nullable();
-            $table->enum('method', ['debit_card', 'credit_card', 'cash', 'bank_payment', 'pse', 'pay_fees', 'bank_check', 'electronic_transfer', 'credit_note']);
+            $table->enum('method', ['placetopay', 'debit_card', 'credit_card', 'cash', 'bank_payment', 'pse', 'pay_fees', 'bank_check', 'electronic_transfer', 'credit_note']);
             $table->decimal('amount', 12, 2)->default(0);
 
             $table->unsignedBigInteger('invoice_id');

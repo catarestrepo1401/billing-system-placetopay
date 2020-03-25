@@ -43,7 +43,7 @@ class CheckoutController extends Controller
         $payment = new Payment();
         $payment->fill([
             'status' => 'pending',
-            'method' => 'debit_card',
+            'method' => 'placetopay',
             'amount' => $invoice->total
         ]);
         $payment->invoice()->associate($invoice);
@@ -92,26 +92,19 @@ class CheckoutController extends Controller
 
         if ($response->isSuccessful()) {
             if ($status == 'APPROVED') {
-                //dd($payment);
                 $payment->update(['status' => 'APPROVED']);
-                $payment->update(['method']);
                 //dd($payment);
             }
             elseif ($status == 'REJECTED') {
-                //dd($payment);
                 $payment->update(['status' => 'REJECTED']);
-                $payment->update(['method']);
                 //dd($payment);
             }
             elseif ($status == 'PENDING') {
-                    //dd($payment);
-                    $payment->update(['status' => 'PENDING']);
-                    $payment->update(['method']);
+                $payment->update(['status' => 'PENDING']);
+                //dd($payment);
             }
             elseif ($status == 'FAILED') {
-                //dd($payment);
                 $payment->update(['status' => 'FAILED']);
-                $payment->update(['method']);
                 //dd($payment);
             }
             else {
