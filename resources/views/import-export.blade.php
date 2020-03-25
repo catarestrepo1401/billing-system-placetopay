@@ -13,10 +13,8 @@
                         <thead>
                         <tr>
                             <th>{{ __('Module') }}</th>
-                            <th>{{ __('Import .xls & .xlsx') }}</th>
-                            <th>{{ __('Export .xlsx') }}</th>
-                            <th>{{ __('Export .csv') }}</th>
-                            <th>{{ __('Export .txt') }}</th>
+                            <th>{{ __('Import') }}</th>
+                            <th colspan="3">{{ __('Export') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -37,13 +35,18 @@
                                 </form>
                             </td>
                             <td>
-                                <a class="btn btn-success" href="{{ route('export.invoices') }}" role="submit">
-                                    {{ __('Export .xlsx') }}
+                                <a class="btn btn-success" href="{{ route('export.invoices', ['format' => 'xlsx']) }}">
+                                    {{ __('EXCEL') }}
                                 </a>
                             </td>
                             <td>
-                                <a class="btn btn-success" href="{{ route('export.invoicescsv') }}" role="submit">
-                                    {{ __('Export .csv') }}
+                                <a class="btn btn-success" href="{{ route('export.invoices', ['format' => 'csv']) }}">
+                                    {{ __('CSV') }}
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn btn-success" href="{{ route('export.invoices', ['format' => 'txt']) }}">
+                                    {{ __('TXT') }}
                                 </a>
                             </td>
                         </tr>
@@ -58,13 +61,18 @@
                                 </form>
                             </td>
                             <td>
-                                <a class="btn btn-success" href="{{ route('export.users') }}" role="submit">
-                                    {{ __('Export .xlsx') }}
+                                <a class="btn btn-success" href="{{ route('export.users', ['format' => 'xlsx']) }}">
+                                    {{ __('EXCEL') }}
                                 </a>
                             </td>
                             <td>
-                                <a class="btn btn-success" href="{{ route('export.userscsv') }}" role="submit">
-                                    {{ __('Export .csv') }}
+                                <a class="btn btn-success" href="{{ route('export.users', ['format' => 'csv']) }}">
+                                    {{ __('CSV') }}
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn btn-success" href="{{ route('export.users', ['format' => 'txt'] )}}">
+                                    {{ __('TXT') }}
                                 </a>
                             </td>
                         </tr>
