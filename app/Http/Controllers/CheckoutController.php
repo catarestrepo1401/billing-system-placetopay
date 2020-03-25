@@ -43,7 +43,7 @@ class CheckoutController extends Controller
         $payment = new Payment();
         $payment->fill([
             'status' => 'pending',
-            'method' => 'placetopay',
+            'method' => 'place_to_pay',
             'amount' => $invoice->total
         ]);
         $payment->invoice()->associate($invoice);
