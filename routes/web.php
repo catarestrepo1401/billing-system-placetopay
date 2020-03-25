@@ -34,7 +34,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('export')->name('export.')->group(function () {
         Route::get('users', 'ExportController@users')->name('users');
+        Route::get('userscsv', 'ExportController@userscsv')->name('userscsv');
         Route::get('invoices', 'ExportController@invoices')->name('invoices');
+        Route::get('invoicescsv', 'ExportController@invoicescsv')->name('invoicescsv');
     });
 
     Route::prefix('import')->name('import.')->group(function () {
