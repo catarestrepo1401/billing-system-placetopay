@@ -12,13 +12,13 @@
 
             <div class="row">
                 <div class="col-md-2">
-                    {!! Field::select('status', ['unverified' => __('Unverified'), 'pending' => __('Pending'), 'rejected' => __('Rejected'), 'verified' => __('Verified')], null, ['tpl' => 'themes/bootstrap4/fields/unlabeled']) !!}
+                    {!! Field::select('status', ['approved' => __('Approved'), 'pending' => __('Pending'), 'rejected' => __('Rejected'), 'failed' => __('Failed')], null, ['tpl' => 'themes/bootstrap4/fields/unlabeled']) !!}
                 </div>
                 <div class="col-md-2">
                     {!! Field::number('identifier', null, ['ph' => __('Identifier'), 'tpl' => 'themes/bootstrap4/fields/unlabeled']) !!}
                 </div>
                 <div class="col-md-2">
-                    {!! Field::select('method', ['debit_card' => __('Debit card'), 'credit_card'=> __('Credit card'), 'cash'=> __('Cash'), 'bank_payment'=> __('Bank payment'), 'pse'=> __('PSE'), 'pay_fees'=> __('Pay fees'), 'bank_check'=> __('Bank check'), 'electronic_transfer'=> __('Electronic transfer'), 'credit_note'=> __('Credit note')], null, ['tpl' => 'themes/bootstrap4/fields/unlabeled']) !!}
+                    {!! Field::select('method', ['place_to_pay' => __('Placetopay'), 'debit_card' => __('Debit card'), 'credit_card'=> __('Credit card'), 'cash'=> __('Cash'), 'bank_payment'=> __('Bank payment'), 'pse'=> __('PSE'), 'pay_fees'=> __('Pay fees'), 'bank_check'=> __('Bank check'), 'electronic_transfer'=> __('Electronic transfer'), 'credit_note'=> __('Credit note')], null, ['tpl' => 'themes/bootstrap4/fields/unlabeled']) !!}
                 </div>
                 <div class="col-md-2">
                     {!! Field::number('amount', null, ['ph' => __('Amount'), 'tpl' => 'themes/bootstrap4/fields/unlabeled']) !!}

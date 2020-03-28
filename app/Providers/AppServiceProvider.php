@@ -4,8 +4,8 @@ namespace App\Providers;
 
 use App\Models\Invoice;
 use App\Models\User;
-use App\Observers\InvoiceObserver;
-use App\Observers\UserObserver;
+use App\Observers\v1\InvoiceObserver;
+use App\Observers\v1\UserObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

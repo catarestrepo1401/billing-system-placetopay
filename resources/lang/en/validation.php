@@ -150,6 +150,8 @@ return [
 
     'empty_option' =>[
         'customer' => 'Select a customer...',
+        'type' => 'Select a type...',
+        'status' => 'Select a status...',
         'method' => 'Select a method...'
     ]
 ];

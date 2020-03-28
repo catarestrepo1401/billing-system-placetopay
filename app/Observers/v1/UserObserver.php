@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Observers;
+namespace App\Observers\v1;
 
 use App\Models\User;
 use Illuminate\Support\Str;

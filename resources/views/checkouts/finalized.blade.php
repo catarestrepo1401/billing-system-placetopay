@@ -5,7 +5,7 @@
         <div class="card-body">
             <h1 class="card-title">
             <p class="text-center">
-                @if ($payment->status == 'APPROVED')
+                @if ($payment->status == 'approved')
                     {{ __('YOUR PAYMENT WAS APPROVED.') }}
                 @else
                     {{ __('YOUR PAYMENT COULD NOT BE PROCESSED.') }}

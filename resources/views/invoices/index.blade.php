@@ -21,9 +21,11 @@
                     {!! Field::text('document_number', null, ['ph' => __('Document number'), 'tpl' => 'themes/bootstrap4/fields/unlabeled']) !!}
                 </div>
                 <div class="col-md-2">
+                    <h6>Expired date</h6>
                     {!! Field::date('expired_at', null, ['tpl' => 'themes/bootstrap4/fields/unlabeled']) !!}
                 </div>
                 <div class="col-md-2">
+                    <h6>Delivery date</h6>
                     {!! Field::date('delivery_at', null, ['tpl' => 'themes/bootstrap4/fields/unlabeled']) !!}
                 </div>
                 <div class="col-md-2">
@@ -42,6 +44,7 @@
                 <tr>
                     <th>{{ __('Document number') }}</th>
                     <th>{{ __('Expired date') }}</th>
+                    <th>{{ __('Delivery date') }}</th>
                     <th>{{ __('Customer') }}</th>
                     <th>{{ __('User') }}</th>
                     <th>{{ __('Net') }}</th>
@@ -54,6 +57,7 @@
                     <tr>
                         <td>{{ $invoice->document_number }}</td>
                         <td>{{ $invoice->expired_at->toDateString() }}</td>
+                        <td>{{ $invoice->delivery_at->toDateString() }}</td>
                         <td>{{ $invoice->customer->full_name }}</td>
                         <td>{{ $invoice->user->full_name }}</td>
                         <td>${{ number_format($invoice->net, 2, ',', '.') }}</td>

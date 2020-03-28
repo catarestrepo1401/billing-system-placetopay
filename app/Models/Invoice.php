@@ -121,7 +121,7 @@ class Invoice extends Model
         }
     }
 
-    /**
+     /**
      * Scope a query to only include items of a given name.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
