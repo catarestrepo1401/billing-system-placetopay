@@ -27,18 +27,19 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('import-export', 'HomeController@importExport')->name('import-export');
 
-    //Route::resource('items', 'ItemController');
-    //Route::resource('invoices', 'InvoiceController');
-    //Route::resource('users', 'UserController');
-    //Route::resource('payments', 'PaymentController');
+    Route::resource('items', 'ItemController');
+    Route::resource('invoices', 'InvoiceController');
+    Route::resource('users', 'UserController');
+    Route::resource('payments', 'PaymentController');
 
-    Route::group(['prefix' => 'api'], function () {
+   /** Route::group(['prefix' => 'api'], function () {
         Route::apiResource('users', 'Api\v1\UserController');
         Route::apiResource('invoices', 'Api\v1\InvoiceController');
         Route::apiResource('items', 'Api\v1\ItemController');
         Route::apiResource('payments', 'Api\v1\PaymentController');
         Route::apiResource('checkouts', 'Api\v1\CheckoutController');
-    });
+    });**/
+
     Route::prefix('export')->name('export.')->group(function () {
         Route::get('users', 'ExportController@users')->name('users');
         Route::get('invoices', 'ExportController@invoices')->name('invoices');
