@@ -31,24 +31,32 @@
                                 <form action="{{ route('import.invoices') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <input type="file" name="file">
+                                    @can('import invoices')
                                     <button type="submit" class="btn btn-primary">Import</button>
+                                    @endcan
                                 </form>
                             </td>
+                            @can('export invoices excel')
                             <td>
                                 <a class="btn btn-success" href="{{ route('export.invoices', ['format' => 'xlsx']) }}">
                                     {{ __('EXCEL') }}
                                 </a>
                             </td>
+                            @endcan
+                            @can('export invoices csv')
                             <td>
                                 <a class="btn btn-success" href="{{ route('export.invoices', ['format' => 'csv']) }}">
                                     {{ __('CSV') }}
                                 </a>
                             </td>
+                            @endcan
+                            @can('export invoices txt')
                             <td>
                                 <a class="btn btn-success" href="{{ route('export.invoices', ['format' => 'txt']) }}">
                                     {{ __('TXT') }}
                                 </a>
                             </td>
+                            @endcan
                         </tr>
 
                         <tr>
@@ -57,24 +65,32 @@
                                 <form action="{{ route('import.users') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <input type="file" name="file">
+                                    @can('import users')
                                     <button type="submit" class="btn btn-primary">Import</button>
+                                    @endcan
                                 </form>
                             </td>
+                            @can('export users excel')
                             <td>
                                 <a class="btn btn-success" href="{{ route('export.users', ['format' => 'xlsx']) }}">
                                     {{ __('EXCEL') }}
                                 </a>
                             </td>
+                            @endcan
+                            @can('export users csv')
                             <td>
                                 <a class="btn btn-success" href="{{ route('export.users', ['format' => 'csv']) }}">
                                     {{ __('CSV') }}
                                 </a>
                             </td>
+                            @endcan
+                            @can('export users txt')
                             <td>
                                 <a class="btn btn-success" href="{{ route('export.users', ['format' => 'txt'] )}}">
                                     {{ __('TXT') }}
                                 </a>
                             </td>
+                            @endcan
                         </tr>
                         </tbody>
                     </table>

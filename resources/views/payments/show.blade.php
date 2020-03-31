@@ -11,7 +11,7 @@
                     <table class="table table-borderless table-sm">
                         <tr>
                             <th>{{ __('Status') }}</th>
-                            <td colspan="3">{{ $payment->status }}</td>
+                            <td colspan="3">{{ __(ucfirst($payment->status)) }}</td>
                         </tr>
                         <tr>
                             <th>{{ __('Identifier') }}</th>
@@ -19,7 +19,7 @@
                         </tr>
                         <tr>
                             <th>{{ __('Method') }}</th>
-                            <td colspan="3">{{ $payment->method }}</td>
+                            <td colspan="3">{{ __(ucfirst($payment->method)) }}</td>
                         </tr>
                         <tr>
                             <th>{{ __('Amount') }}</th>
@@ -29,12 +29,19 @@
 
                     {!! Form::open(['route' => ['payments.destroy', $payment], 'method' => 'DELETE']) !!}
                     <div class="btn-group float-right">
-                        <a href="{{ route('payments.edit', $payment) }}" class="btn">
-                            {{ __('Edit') }}
+                        <a href="{{ route('payments.index', $payment) }}" class="btn btn-info">
+                            {{ __('Return') }}
                         </a>
-                        <button type="submit" class="btn btn-danger">
-                            {{ __('Delete') }}
-                        </button>
+                        @can('update payment')
+                            <a href="{{ route('payments.edit', $payment) }}" class="btn btn-success">
+                                {{ __('Edit') }}
+                            </a>
+                        @endcan
+                        @can('delete payment')
+                            <button type="submit" class="btn btn-danger">
+                                {{ __('Delete') }}
+                            </button>
+                        @endcan
                     </div>
                     {!! Form::close() !!}
                 </div>

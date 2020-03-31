@@ -92,23 +92,24 @@ class CheckoutController extends Controller
 
         if ($response->isSuccessful()) {
             if ($status == 'APPROVED') {
-                $payment->update(['status' => 'APPROVED']);
+                $payment->update(['status' => 'approved']);
                 //dd($payment);
             }
             elseif ($status == 'REJECTED') {
-                $payment->update(['status' => 'REJECTED']);
+                $payment->update(['status' => 'rejected']);
                 //dd($payment);
             }
             elseif ($status == 'PENDING') {
-                $payment->update(['status' => 'PENDING']);
+                $payment->update(['status' => 'pending']);
                 //dd($payment);
             }
             elseif ($status == 'FAILED') {
-                $payment->update(['status' => 'FAILED']);
+                $payment->update(['status' => 'failed']);
                 //dd($payment);
             }
             else {
-                dd('NOT SUPPORTED STATUS');
+                //dd('NOT SUPPORTED STATUS');
+                return $status .' It is an unverified status, contact the administrator.';
             }
 
             return redirect()->route('checkouts.finalized', $payment);

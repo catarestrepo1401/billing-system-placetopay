@@ -14,24 +14,29 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-/**Route::prefix('checkouts')->name('checkouts.')->group(function () {
-    Route::get('/initialized/{invoice}', 'CheckoutController@index')->name('index');
-    Route::post('/execute/{invoice}', 'CheckoutController@execute')->name('execute');
-    Route::get('/process/{payment}', 'CheckoutController@process')->name('process');
-    Route::get('/checkouts/{payment}/finalized', 'CheckoutController@finalized')->name('finalized');
-});**/
+Route::prefix('checkouts')->name('checkouts.')->group(function () {
+    Route::get('/initialized/{invoice}', 'CheckoutController@index')->name('index')
+        ->middleware('permission:read checkouts');
+    Route::post('/execute/{invoice}', 'CheckoutController@execute')->name('execute')
+        ->middleware('permission:url place_to_pay for payment');
+    Route::get('/process/{payment}', 'CheckoutController@process')->name('process')
+        ->middleware('permission:process payment');
+    Route::get('/checkouts/{payment}/finalized', 'CheckoutController@finalized')->name('finalized')
+        ->middleware('permission:finalized payment');
+});
 
 Auth::routes(['register' => false]);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('import-export', 'HomeController@importExport')->name('import-export');
-
+    Route::resource('users', 'UserController');
     Route::resource('items', 'ItemController');
     Route::resource('invoices', 'InvoiceController');
-    Route::resource('users', 'UserController');
     Route::resource('payments', 'PaymentController');
+    Route::resource('roles', 'RoleController');
 
+    //estas rutas las necesito cuando quiero ver el resultado de la api en el navegador
    /** Route::group(['prefix' => 'api'], function () {
         Route::apiResource('users', 'Api\v1\UserController');
         Route::apiResource('invoices', 'Api\v1\InvoiceController');

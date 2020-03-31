@@ -25,13 +25,13 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'identification' => ['required',
+            'identification' => ['required','max:12',
             Rule::unique('users', 'identification')->ignore($this->user->identification),
             ],
             'first_name'     => ['required'],
             'last_name'      => ['required'],
-            'email'          => ['required', 'email:rfc,dns'],
-            'password'       => ['required', 'password:api']
+            'email'          => ['required'],
+            'password'       => ['required']
         ];
     }
 }

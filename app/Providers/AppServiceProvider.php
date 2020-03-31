@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Observers\v1\InvoiceObserver;
 use App\Observers\v1\UserObserver;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);
         User::observe(UserObserver::class);
         Invoice::observe(InvoiceObserver::class);
     }

@@ -13,12 +13,17 @@
                     @include('items.fields')
 
                     <div class="btn-group float-right">
-                        <a href="{{ route('items.show', $item) }}" class="btn">
-                            {{ __('Return') }}
-                        </a>
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('Save changes') }}
-                        </button>
+                        @can('read items')
+                            <a href="{{ route('items.show', $item) }}" class="btn btn-info">
+                                {{ __('Return') }}
+                            </a>
+                        @endcan
+
+                        @can('update item')
+                            <button type="submit" class="btn btn-primary">
+                                {{ __('Save changes') }}
+                            </button>
+                        @endcan
                     </div>
                     {!! Form::close() !!}
                 </div>

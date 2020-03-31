@@ -12,6 +12,12 @@ use Styde\Html\Facades\Alert;
 
 class ImportController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:import invoices'])->only('invoices');
+        $this->middleware(['permission:import users'])->only('users');
+    }
+
     public function invoices(ImportRequest $request)
     {
         Excel::import(new InvoicesImport, $request->file('file'));

@@ -10,6 +10,14 @@ use Styde\Html\Facades\Alert;
 
 class ItemController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:read items'])->only(['index', 'show']);
+        $this->middleware(['permission:create item'])->only('store');
+        $this->middleware(['permission:update item'])->only('update');
+        $this->middleware(['permission:delete item'])->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *

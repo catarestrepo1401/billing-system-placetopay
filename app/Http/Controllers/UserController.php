@@ -10,6 +10,14 @@ use Styde\Html\Facades\Alert;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:read users'])->only(['index', 'show']);
+        $this->middleware(['permission:create user'])->only('store');
+        $this->middleware(['permission:update user'])->only('update');
+        $this->middleware(['permission:delete user'])->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -45,6 +53,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
+        //dd($request->all());
         $user = new User();
         $user->fill($request->all());
         $user->save();

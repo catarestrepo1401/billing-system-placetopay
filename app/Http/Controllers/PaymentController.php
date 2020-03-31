@@ -12,6 +12,14 @@ use Styde\Html\Facades\Alert;
 
 class PaymentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:read payments'])->only(['index', 'show']);
+        $this->middleware(['permission:create payment'])->only('store');
+        $this->middleware(['permission:update payment'])->only('update');
+        $this->middleware(['permission:delete payment'])->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *

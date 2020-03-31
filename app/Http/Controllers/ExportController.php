@@ -14,6 +14,16 @@ use Styde\Html\Facades\Alert;
 
 class ExportController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:export invoices excel'])->only('invoices');
+        $this->middleware(['permission:export invoices csv'])->only('invoices');
+        $this->middleware(['permission:export invoices txt'])->only('invoices');
+        $this->middleware(['permission:export users excel'])->only('users');
+        $this->middleware(['permission:export users csv'])->only('users');
+        $this->middleware(['permission:export users txt'])->only('users');
+    }
+
     //invoices export
     public function invoices(Request $request)
     {

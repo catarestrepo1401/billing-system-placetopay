@@ -14,12 +14,17 @@
                     @include('payments.fields')
 
                     <div class="btn-group float-right">
-                        <a href="{{ route('payments.index') }}" class="btn">
+                        @can('read payments')
+                        <a href="{{ route('payments.index') }}" class="btn btn-info">
                             {{ __('Return') }}
                         </a>
+                        @endcan
+
+                        @can('create payment')
                         <button type="submit" class="btn btn-primary">
                             {{ __('Create') }}
                         </button>
+                        @endcan
                     </div>
                     {!! Form::close() !!}
                 </div>

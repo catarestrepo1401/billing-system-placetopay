@@ -16,33 +16,47 @@
                         {{ __('Home') }}
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('items.index') }}">
-                        {{ __('Items') }}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('invoices.index') }}">
-                        {{ __('Invoices') }}
-                    </a>
-                </li>
+                @can('read users')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('users.index') }}">
                         {{ __('Users') }}
                     </a>
                 </li>
+                @endcan
+                @can('read roles')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('roles.index') }}">
+                            {{ __('Roles') }}
+                        </a>
+                    </li>
+                @endcan
+                @can('read items')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('items.index') }}">
+                        {{ __('Items') }}
+                    </a>
+                </li>
+                @endcan
+                @can('read invoices')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('invoices.index') }}">
+                        {{ __('Invoices') }}
+                    </a>
+                </li>
+                @endcan
+                @can('read payments')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('payments.index') }}">
                         {{ __('Payments') }}
                     </a>
                 </li>
+                @endcan
                 <li class="nav-item dropdown">
                     <a id="settingDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ __('Settings') }}
                         <span class="caret"></span>
                     </a>
-
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="settingDropdown">
                         <a class="dropdown-item" href="{{ route('import-export') }}">
                             {{ __('Import & Export') }}

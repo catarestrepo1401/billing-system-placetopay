@@ -18,7 +18,7 @@ use Illuminate\Support\Str;
 */
 
 $factory->define(User::class, function (Faker $faker) {
-    return [
+   return [
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
         'identification' => $faker->numberBetween(1000000, 999999999999),
@@ -26,5 +26,6 @@ $factory->define(User::class, function (Faker $faker) {
         'email_verified_at' => now(),
         'password' => 'password',
         'remember_token' => Str::random(10),
+        'rol' => $faker->randomElement(['super-admin', 'moderator', 'guess']),
     ];
 });

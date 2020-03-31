@@ -5,11 +5,14 @@
         <div>
             <h1>{{ __('Invoice manager') }}</h1>
         </div>
-        <div>
-            <a href="{{ route('invoices.create') }}" class="btn btn-primary">
-                {{  __('Create') }}
-            </a>
-        </div>
+
+        @can('create invoice')
+            <div>
+                <a href="{{ route('invoices.create') }}" class="btn btn-primary">
+                    {{  __('Create') }}
+                </a>
+            </div>
+        @endcan
     </div>
 
     <div class="card">
@@ -62,11 +65,14 @@
                         <td>{{ $invoice->user->full_name }}</td>
                         <td>${{ number_format($invoice->net, 2, ',', '.') }}</td>
                         <td>${{ number_format($invoice->total, 2, ',', '.') }}</td>
-                        <td>
-                            <a href="{{ route('invoices.show', $invoice) }}" class="btn btn-primary btn-sm float-right">
-                                {{  __('Details') }}
-                            </a>
-                        </td>
+
+                        @can('read invoices')
+                            <td>
+                                <a href="{{ route('invoices.show', $invoice) }}" class="btn btn-primary btn-sm float-right">
+                                    {{  __('Details') }}
+                                </a>
+                            </td>
+                        @endcan
                     </tr>
                 @endforeach
                 </tbody>

@@ -8,15 +8,21 @@
         <div>
             {!! Form::open(['route' => ['invoices.destroy', $invoice], 'method' => 'DELETE']) !!}
             <div class="btn-group">
+                @can('read invoices')
                 <a href="{{ route('invoices.index') }}" class="btn btn-light">
                     {{ __('Return') }}
                 </a>
+                @endcan
+                @can('update invoice')
                 <a href="{{ route('invoices.edit', $invoice) }}" class="btn btn-warning">
                     {{ __('Edit') }}
                 </a>
+                @endcan
+                @can('delete invoice')
                 <button type="submit" class="btn btn-danger">
                     {{ __('Delete') }}
                 </button>
+                @endcan
             </div>
             {!! Form::close() !!}
         </div>
@@ -120,10 +126,12 @@
                     <h3>{{ __('Payments') }}</h3>
                 </div>
                 <div>
+                    @can('create payments')
                     <a href="{{ route('payments.create', ['invoice' => $invoice, 'total' => $invoice->total]) }}"
                        class="btn btn-primary btn-sm">
                         {{  __('Create') }}
                     </a>
+                    @endcan
                 </div>
             </div>
 
@@ -146,11 +154,13 @@
                         <td>{{ __(ucfirst($payment->method)) }}</td>
                         <td>${{ number_format($payment->amount, 2, ',', '.') }}</td>
                         <td>{{ __(ucfirst($payment->status)) }}</td>
+                        @can('read payments')
                         <td>
                             <a href="{{ route('payments.show', $payment) }}" class="btn btn-primary btn-sm">
                                 {{ __('Details') }}
                             </a>
                         </td>
+                        @endcan
                     </tr>
                 @endforeach
                 </tbody>
@@ -159,6 +169,7 @@
             <div class="alert alert-primary" role="alert">
                 <strong>{{ __('Payment link') }}</strong> {{ route('checkouts.index', $invoice->document_number) }}
             </div>
+
         </div>
         <div class="col-md-4">
             <div class="card">

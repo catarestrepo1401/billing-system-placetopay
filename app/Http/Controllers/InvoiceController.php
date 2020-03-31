@@ -11,6 +11,13 @@ use Styde\Html\Facades\Alert;
 
 class InvoiceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:read invoices'])->only(['index', 'show']);
+        $this->middleware(['permission:create invoice'])->only('store');
+        $this->middleware(['permission:update invoice'])->only('update');
+        $this->middleware(['permission:delete invoice'])->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -29,12 +29,21 @@
 
                     {!! Form::open(['route' => ['users.destroy', $user], 'method' => 'DELETE']) !!}
                     <div class="btn-group float-right">
-                        <a href="{{ route('users.edit', $user) }}" class="btn">
+                        @can('read users')
+                        <a href="{{ route('users.index', $user) }}" class="btn btn-info">
+                            {{ __('Return') }}
+                        </a>
+                        @endcan
+                        @can('update user')
+                        <a href="{{ route('users.edit', $user) }}" class="btn btn-success">
                             {{ __('Edit') }}
                         </a>
+                        @endcan
+                        @can('delete user')
                         <button type="submit" class="btn btn-danger">
                             {{ __('Delete') }}
                         </button>
+                        @endcan
                     </div>
                     {!! Form::close() !!}
                 </div>

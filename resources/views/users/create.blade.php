@@ -13,12 +13,17 @@
                     @include('users.fields')
 
                     <div class="btn-group float-right">
+                        @can('read users')
                         <a href="{{ route('users.index') }}" class="btn">
                             {{ __('Return') }}
                         </a>
+                        @endcan
+
+                        @can('create user')
                         <button type="submit" class="btn btn-primary">
                             {{ __('Create') }}
                         </button>
+                        @endcan
                     </div>
                     {!! Form::close() !!}
                 </div>

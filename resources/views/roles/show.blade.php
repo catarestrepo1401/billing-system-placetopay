@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="mb-3">
-        <h1>{{ __('Item details') }}</h1>
+        <h1>{{ __('Roles details') }}</h1>
     </div>
     <div class="row">
         <div class="col-md-5">
@@ -11,35 +11,33 @@
                     <table class="table table-borderless table-sm">
                         <tr>
                             <th>{{ __('Name') }}</th>
-                            <td colspan="3">{{ $item->name }}</td>
+                            <td colspan="3">{{ __(ucfirst($role->name)) }}</td>
                         </tr>
                         <tr>
-                            <th>{{ __('Type') }}</th>
-                            <td>{{ __(ucfirst($item->type)) }}</td>
-                            <th>{{ __('Price') }}</th>
-                            <td>${{ number_format($item->price, 2, ',', '.') }}</td>
+                            <th>{{ __('Guard name') }}</th>
+                            <td>{{ __(ucfirst($role->guard_name)) }}</td>
                         </tr>
                         <tr>
                             <th>{{ __('Registration date') }}</th>
-                            <td>{{ $item->created_at->toDateString() }}</td>
+                            <td>{{ $role->created_at->toDateString() }}</td>
                             <th>{{ __('Last update') }}</th>
-                            <td>{{ $item->updated_at->toDateString() }}</td>
+                            <td>{{ $role->updated_at->toDateString() }}</td>
                         </tr>
                     </table>
 
-                    {!! Form::open(['route' => ['items.destroy', $item], 'method' => 'DELETE']) !!}
+                    {!! Form::open(['route' => ['roles.destroy', $role], 'method' => 'DELETE']) !!}
                     <div class="btn-group float-right">
-                        @can('read items')
-                            <a href="{{ route('items.index', $item) }}" class="btn btn-info">
+                        @can('read roles')
+                            <a href="{{ route('roles.index', $role) }}" class="btn btn-info">
                                 {{ __('Return') }}
                             </a>
                         @endcan
-                        @can('update item')
-                            <a href="{{ route('items.edit', $item) }}" class="btn btn-success">
+                        @can('update role')
+                            <a href="{{ route('roles.edit', $role) }}" class="btn btn-success">
                                 {{ __('Edit') }}
                             </a>
                         @endcan
-                        @can('delete item')
+                        @can('delete role')
                             <button type="submit" class="btn btn-danger">
                                 {{ __('Delete') }}
                             </button>

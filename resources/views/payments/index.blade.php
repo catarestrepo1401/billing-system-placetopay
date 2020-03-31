@@ -48,11 +48,14 @@
                         <td>{{ $payment->identifier }}</td>
                         <td>{{ __(ucfirst($payment->method)) }}</td>
                         <td>${{ number_format($payment->amount, 2, ',', '.') }}</td>
+
+                        @can('read payments')
                         <td>
                             <a href="{{ route('payments.show', $payment) }}" class="btn btn-primary btn-sm float-right">
                                 {{  __('Details') }}
                             </a>
                         </td>
+                        @endcan
                     </tr>
                 @endforeach
                 </tbody>

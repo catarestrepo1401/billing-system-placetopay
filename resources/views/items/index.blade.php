@@ -5,11 +5,14 @@
         <div>
             <h1>{{ __('Item manager') }}</h1>
         </div>
-        <div>
-            <a href="{{ route('items.create') }}" class="btn btn-primary">
-                {{  __('Create') }}
-            </a>
-        </div>
+
+        @can('create item')
+            <div>
+                <a href="{{ route('items.create') }}" class="btn btn-primary">
+                    {{  __('Create') }}
+                </a>
+            </div>
+        @endcan
     </div>
 
     <div class="card">
@@ -53,11 +56,14 @@
                         <td>{{ __(ucfirst($item->type)) }}</td>
                         <td>{{ $item->name }}</td>
                         <td>${{ number_format($item->price, 2, ',', '.') }}</td>
-                        <td>
-                            <a href="{{ route('items.show', $item) }}" class="btn btn-primary btn-sm float-right">
-                                {{  __('Details') }}
-                            </a>
-                        </td>
+
+                        @can('read items')
+                            <td>
+                                <a href="{{ route('items.show', $item) }}" class="btn btn-primary btn-sm float-right">
+                                    {{  __('Details') }}
+                                </a>
+                            </td>
+                        @endcan
                     </tr>
                 @endforeach
                 </tbody>

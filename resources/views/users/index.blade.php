@@ -5,11 +5,14 @@
         <div>
             <h1>{{ __('User manager') }}</h1>
         </div>
+
+        @can('create user')
         <div>
             <a href="{{ route('users.create') }}" class="btn btn-primary">
                 {{  __('Create') }}
             </a>
         </div>
+        @endcan
     </div>
 
     <div class="card">
@@ -42,7 +45,8 @@
                     <th>{{ __('Identification') }}</th>
                     <th>{{ __('First name') }}</th>
                     <th>{{ __('Last name') }}</th>
-                    <th>{{ __('Email') }}
+                    <th>{{ __('Email') }}</th>
+                    <th>{{ __('Rol') }}</th>
                 </tr>
                 </thead>
 
@@ -53,11 +57,15 @@
                         <td>{{ $user->first_name }}</td>
                         <td>{{ $user->last_name }}</td>
                         <td>{{ $user->email }}</td>
+                        <td>{{ $user->rol }}</td>
+
+                        @can('read users')
                         <td>
                             <a href="{{ route('users.show', $user) }}" class="btn btn-primary btn-sm float-right">
                                 {{  __('Details') }}
                             </a>
                         </td>
+                        @endcan
                     </tr>
                 @endforeach
                 </tbody>

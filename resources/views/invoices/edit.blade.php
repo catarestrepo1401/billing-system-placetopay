@@ -8,12 +8,18 @@
         </div>
         <div>
             <div class="btn-group">
-                <a href="{{ route('invoices.show', $invoice) }}" class="btn btn-light">
-                    {{ __('Return') }}
-                </a>
-                <button type="submit" class="btn btn-primary">
-                    {{ __('Save') }}
-                </button>
+                @can('read invoices')
+                    <a href="{{ route('invoices.show', $invoice) }}" class="btn btn-info">
+                        {{ __('Return') }}
+                    </a>
+                @endcan
+
+                @can('update invoice')
+                    <button type="submit" class="btn btn-primary">
+                        {{ __('Save changes') }}
+                    </button>
+                @endcan
+
             </div>
         </div>
     </div>
