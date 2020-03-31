@@ -22,10 +22,11 @@
                          class="img-fluid" alt="Placetopay">
                 </div>
             </div>
-
+            @can('url place_to_pay for payment')
             <button type="submit" class="btn btn-primary btn-block">
                 Continuar
             </button>
+            @endcan
             {{ Form::close() }}
         </div>
     </div>

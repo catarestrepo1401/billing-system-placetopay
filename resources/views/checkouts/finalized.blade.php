@@ -7,6 +7,10 @@
             <p class="text-center">
                 @if ($payment->status == 'approved')
                     {{ __('YOUR PAYMENT WAS APPROVED.') }}
+                @elseif($payment->status == 'rejected')
+                    {{ __('YOUR PAYMENT WAS REJECTED.') }}
+                @elseif($payment->status == 'pending')
+                    {{ __('YOUR PAYMENT WAS PENDING.') }}
                 @else
                     {{ __('YOUR PAYMENT COULD NOT BE PROCESSED.') }}
                 @endif
@@ -41,9 +45,11 @@
                 </tbody>
             </table>
             <div>
+                @can('finalized payment')
                 <a href="{{ route('home') }}" class="btn btn-primary btn-block">
-                    {{ __('Return') }}
+                    {{ __('Return to billing-system') }}
                 </a>
+                @endcan
             </div>
         </div>
     </div>
