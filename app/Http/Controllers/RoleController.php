@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 use Styde\Html\Facades\Alert;
+use App\Models\Role;
 
 class RoleController extends Controller
 {
@@ -25,14 +25,13 @@ class RoleController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param $name
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //admin.user.create
-        //admin.user.edit
-        //admin.user.delete
         $permissions = Permission::all()->pluck('name', 'name')->toArray();
+        //dd($permissions);
 
         return view('roles.create', compact('permissions'));
     }
@@ -47,7 +46,7 @@ class RoleController extends Controller
     {
         $role = Role::create($request->all());
 
-        $role->permissions()->sync($request->get('permissions'));
+        //$role->permissions()->sync($request->get('permissions'));
 
         Alert::success(__('The record was successfully stored.'));
 
