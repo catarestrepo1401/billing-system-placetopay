@@ -26,11 +26,8 @@
                             <td>{{ $role->updated_at->toDateString() }}</td>
                         </tr>
                             <div>
-                                <td>
-                                    <th>
-                                        <h5>{{ __('Permissions') }}</h5>
-                                    </th>
-                                    @foreach($role->permissions as $permission)
+                                <th>{{ __('Permissions') }}</th>
+                                <td>@foreach($role->permissions as $permission)
                                         <li class="list-group-item list-group-item-secondary">
                                             {{ $permission->name }}
                                         </li>
@@ -38,7 +35,6 @@
                                 </td>
                             </div>
                     </table>
-
                     {!! Form::open(['route' => ['roles.destroy', $role], 'method' => 'DELETE']) !!}
                     <div class="btn-group float-right">
                         @can('dashboard.role')
