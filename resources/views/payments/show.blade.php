@@ -32,12 +32,12 @@
                         <a href="{{ route('payments.index', $payment) }}" class="btn btn-info">
                             {{ __('Return') }}
                         </a>
-                        @can('update payment')
+                        @can('dashboard.payment.edit')
                             <a href="{{ route('payments.edit', $payment) }}" class="btn btn-success">
                                 {{ __('Edit') }}
                             </a>
                         @endcan
-                        @can('delete payment')
+                        @can('dashboard.payment.delete')
                             <button type="submit" class="btn btn-danger">
                                 {{ __('Delete') }}
                             </button>

@@ -13,13 +13,13 @@
                     @include('items.fields')
 
                     <div class="btn-group float-right">
-                        @can('read items')
+                        @can('dashboard.item')
                             <a href="{{ route('items.show', $item) }}" class="btn btn-info">
                                 {{ __('Return') }}
                             </a>
                         @endcan
 
-                        @can('update item')
+                        @can('dashboard.item.edit')
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Save changes') }}
                             </button>

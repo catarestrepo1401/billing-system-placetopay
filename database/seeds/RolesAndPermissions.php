@@ -18,50 +18,52 @@ class RolesAndPermissions extends Seeder
         app()['cache']->forget('spatie.permission.cache');
 
         // create permissions
-        Permission::create(['name' => 'create permission']);
-        Permission::create(['name' => 'read permissions']);
-        Permission::create(['name' => 'update permission']);
-        Permission::create(['name' => 'delete permission']);
+        Permission::create(['name' => 'dashboard']);
 
-        Permission::create(['name' => 'create role']);
-        Permission::create(['name' => 'read roles']);
-        Permission::create(['name' => 'update role']);
-        Permission::create(['name' => 'delete role']);
+        Permission::create(['name' => 'dashboard.permission']);
+        Permission::create(['name' => 'dashboard.permission.create']);
+        Permission::create(['name' => 'dashboard.permission.edit']);
+        Permission::create(['name' => 'dashboard.permission.delete']);
 
-        Permission::create(['name' => 'create user']);
-        Permission::create(['name' => 'read users']);
-        Permission::create(['name' => 'update user']);
-        Permission::create(['name' => 'delete user']);
+        Permission::create(['name' => 'dashboard.role']);
+        Permission::create(['name' => 'dashboard.role.create']);
+        Permission::create(['name' => 'dashboard.role.edit']);
+        Permission::create(['name' => 'dashboard.role.delete']);
 
-        Permission::create(['name' => 'create item']);
-        Permission::create(['name' => 'read items']);
-        Permission::create(['name' => 'update item']);
-        Permission::create(['name' => 'delete item']);
+        Permission::create(['name' => 'dashboard.user']);
+        Permission::create(['name' => 'dashboard.user.create']);
+        Permission::create(['name' => 'dashboard.user.edit']);
+        Permission::create(['name' => 'dashboard.user.delete']);
 
-        Permission::create(['name' => 'create invoice']);
-        Permission::create(['name' => 'read invoices']);
-        Permission::create(['name' => 'update invoice']);
-        Permission::create(['name' => 'delete invoice']);
+        Permission::create(['name' => 'dashboard.item']);
+        Permission::create(['name' => 'dashboard.item.create']);
+        Permission::create(['name' => 'dashboard.item.edit']);
+        Permission::create(['name' => 'dashboard.item.delete']);
 
-        Permission::create(['name' => 'create payment']);
-        Permission::create(['name' => 'read payments']);
-        Permission::create(['name' => 'update payment']);
-        Permission::create(['name' => 'delete payment']);
+        Permission::create(['name' => 'dashboard.invoice']);
+        Permission::create(['name' => 'dashboard.invoice.create']);
+        Permission::create(['name' => 'dashboard.invoice.edit']);
+        Permission::create(['name' => 'dashboard.invoice.delete']);
 
-        Permission::create(['name' => 'read checkouts']);
-        Permission::create(['name' => 'url place_to_pay for payment']);
-        Permission::create(['name' => 'process payment']);
-        Permission::create(['name' => 'finalized payment']);
+        Permission::create(['name' => 'dashboard.payment']);
+        Permission::create(['name' => 'dashboard.payment.create']);
+        Permission::create(['name' => 'dashboard.payment.edit']);
+        Permission::create(['name' => 'dashboard.payment.delete']);
 
-        Permission::create(['name' => 'import invoices']);
-        Permission::create(['name' => 'import users']);
+        Permission::create(['name' => 'dashboard.checkout']);
+        Permission::create(['name' => 'dashboard.checkout.execute']);
+        Permission::create(['name' => 'dashboard.checkout.process']);
+        Permission::create(['name' => 'dashboard.checkout.finalized']);
 
-        Permission::create(['name' => 'export invoices excel']);
-        Permission::create(['name' => 'export invoices csv']);
-        Permission::create(['name' => 'export invoices txt']);
-        Permission::create(['name' => 'export users excel']);
-        Permission::create(['name' => 'export users csv']);
-        Permission::create(['name' => 'export users txt']);
+        Permission::create(['name' => 'dashboard.importExport']);
+        Permission::create(['name' => 'dashboard.invoices.import']);
+        Permission::create(['name' => 'dashboard.invoices.exportExcel']);
+        Permission::create(['name' => 'dashboard.invoices.exportCsv']);
+        Permission::create(['name' => 'dashboard.invoices.exportTxt']);
+        Permission::create(['name' => 'dashboard.users.import']);
+        Permission::create(['name' => 'dashboard.users.exportExcel']);
+        Permission::create(['name' => 'dashboard.users.exportCsv']);
+        Permission::create(['name' => 'dashboard.users.exportTxt']);
 
         // create roles and assign created permissions
         //role1 super-admin all permissions
@@ -70,40 +72,43 @@ class RolesAndPermissions extends Seeder
 
         //role2: moderator, permissions
         $role2 = Role::create(['name' => 'moderator']);
-        $role2->givePermissionTo('create user');
-        $role2->givePermissionTo('read users');
-        $role2->givePermissionTo('update user');
-        $role2->givePermissionTo('create invoice');
-        $role2->givePermissionTo('read invoices');
-        $role2->givePermissionTo('update invoice');
-        $role2->givePermissionTo('create item');
-        $role2->givePermissionTo('read items');
-        $role2->givePermissionTo('update item');
-        $role2->givePermissionTo('create payment');
-        $role2->givePermissionTo('read payments');
-        $role2->givePermissionTo('update payment');
-        $role2->givePermissionTo('import invoices');
-        $role2->givePermissionTo('import users');
-        $role2->givePermissionTo('export invoices excel');
-        $role2->givePermissionTo('export invoices csv');
-        $role2->givePermissionTo('export invoices txt');
-        $role2->givePermissionTo('export users excel');
-        $role2->givePermissionTo('export users csv');
-        $role2->givePermissionTo('export users txt');
-        $role2->givePermissionTo('read checkouts');
-        $role2->givePermissionTo('url place_to_pay for payment');
-        $role2->givePermissionTo('process payment');
-        $role2->givePermissionTo('finalized payment');
+        $role2->givePermissionTo('dashboard');
+        $role2->givePermissionTo('dashboard.user');
+        $role2->givePermissionTo('dashboard.user.create');
+        $role2->givePermissionTo('dashboard.user.edit');
+        $role2->givePermissionTo('dashboard.invoice');
+        $role2->givePermissionTo('dashboard.invoice.create');
+        $role2->givePermissionTo('dashboard.invoice.edit');
+        $role2->givePermissionTo('dashboard.item');
+        $role2->givePermissionTo('dashboard.item.create');
+        $role2->givePermissionTo('dashboard.item.edit');
+        $role2->givePermissionTo('dashboard.payment');
+        $role2->givePermissionTo('dashboard.payment.create');
+        $role2->givePermissionTo('dashboard.payment.edit');
+        $role2->givePermissionTo('dashboard.checkout');
+        $role2->givePermissionTo('dashboard.checkout.execute');
+        $role2->givePermissionTo('dashboard.checkout.process');
+        $role2->givePermissionTo('dashboard.checkout.finalized');
+        $role2->givePermissionTo('dashboard.importExport');
+        $role2->givePermissionTo('dashboard.invoices.import');
+        $role2->givePermissionTo('dashboard.users.import');
+        $role2->givePermissionTo('dashboard.invoices.exportExcel');
+        $role2->givePermissionTo('dashboard.invoices.exportCsv');
+        $role2->givePermissionTo('dashboard.invoices.exportTxt');
+        $role2->givePermissionTo('dashboard.users.exportExcel');
+        $role2->givePermissionTo('dashboard.users.exportCsv');
+        $role2->givePermissionTo('dashboard.users.exportTxt');
 
         //role3: guess, permissions
         $role3 = Role::create(['name' => 'guess']);
-        $role3->givePermissionTo('read users');
-        $role3->givePermissionTo('read invoices');
-        $role3->givePermissionTo('read items');
-        $role3->givePermissionTo('read payments');
-        $role2->givePermissionTo('read checkouts');
-        $role2->givePermissionTo('url place_to_pay for payment');
-        $role2->givePermissionTo('process payment');
-        $role2->givePermissionTo('finalized payment');
+        $role2->givePermissionTo('dashboard');
+        $role3->givePermissionTo('dashboard.user');
+        $role3->givePermissionTo('dashboard.invoice');
+        $role3->givePermissionTo('dashboard.item');
+        $role3->givePermissionTo('dashboard.payment');
+        $role3->givePermissionTo('dashboard.checkout');
+        $role3->givePermissionTo('dashboard.checkout.execute');
+        $role3->givePermissionTo('dashboard.checkout.process');
+        $role3->givePermissionTo('dashboard.checkout.finalized');
     }
 }

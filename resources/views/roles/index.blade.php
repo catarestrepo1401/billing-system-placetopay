@@ -6,7 +6,7 @@
             <h1>{{ __('Roles manager') }}</h1>
         </div>
 
-        @can('create role')
+        @can('dashboard.role.create')
             <div>
                 <a href="{{ route('roles.create') }}" class="btn btn-primary">
                     {{  __('Create') }}
@@ -32,7 +32,7 @@
                         <td>{{ __(ucfirst($role->name)) }}</td>
                         <td>{{ __(ucfirst($role->guard_name)) }}</td>
 
-                        @can('read roles')
+                        @can('dashboard.role')
                             <td>
                                 <a href="{{ route('roles.show', $role) }}" class="btn btn-primary btn-sm float-right">
                                     {{  __('Details') }}

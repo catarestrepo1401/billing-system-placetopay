@@ -101,7 +101,7 @@ class CheckoutController extends Controller
     {
         return response()->json([
             'payment_identifier' => $payment->identifier,
-            'message' => 'This is your payment number.',
+            'message' => 'Your payment was '.$payment->status,
         ], 200);
     }
 }

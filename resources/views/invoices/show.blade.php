@@ -8,17 +8,17 @@
         <div>
             {!! Form::open(['route' => ['invoices.destroy', $invoice], 'method' => 'DELETE']) !!}
             <div class="btn-group">
-                @can('read invoices')
+                @can('dashboard.invoice')
                 <a href="{{ route('invoices.index') }}" class="btn btn-light">
                     {{ __('Return') }}
                 </a>
                 @endcan
-                @can('update invoice')
+                @can('dashboard.invoice.edit')
                 <a href="{{ route('invoices.edit', $invoice) }}" class="btn btn-warning">
                     {{ __('Edit') }}
                 </a>
                 @endcan
-                @can('delete invoice')
+                @can('dashboard.invoice.delete')
                 <button type="submit" class="btn btn-danger">
                     {{ __('Delete') }}
                 </button>
@@ -126,7 +126,7 @@
                     <h3>{{ __('Payments') }}</h3>
                 </div>
                 <div>
-                    @can('create payments')
+                    @can('dashboard.payment.create')
                     <a href="{{ route('payments.create', ['invoice' => $invoice, 'total' => $invoice->total]) }}"
                        class="btn btn-primary btn-sm">
                         {{  __('Create') }}
@@ -154,7 +154,7 @@
                         <td>{{ __(ucfirst($payment->method)) }}</td>
                         <td>${{ number_format($payment->amount, 2, ',', '.') }}</td>
                         <td>{{ __(ucfirst($payment->status)) }}</td>
-                        @can('read payments')
+                        @can('dashboard.payment')
                         <td>
                             <a href="{{ route('payments.show', $payment) }}" class="btn btn-primary btn-sm">
                                 {{ __('Details') }}

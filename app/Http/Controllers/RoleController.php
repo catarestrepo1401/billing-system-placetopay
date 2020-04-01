@@ -45,6 +45,7 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $role = Role::create($request->all());
+        $role->save();
 
         //$role->permissions()->sync($request->get('permissions'));
 
@@ -78,6 +79,8 @@ class RoleController extends Controller
 
         $permissions = Permission::get();
 
+
+
         return view('roles.edit', compact('role', 'permissions'));
     }
 
@@ -97,7 +100,7 @@ class RoleController extends Controller
 
         Alert::success(__('The record was successfully updated.'));
 
-        return redirect()->route('roles.edit', $role->id);
+        return redirect()->route('roles.index', $role->id);
     }
 
     /**

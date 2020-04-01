@@ -18,6 +18,8 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware(['permission:dashboard'])->only('index');
+        $this->middleware(['permission:dashboard.importExport'])->only('importExport');
     }
 
     /**
@@ -29,11 +31,11 @@ class HomeController extends Controller
     {
         $user = Auth::user();
 
-        $rol = $user->roles->implode('name', ', ');
+        $role = $user->roles->implode('name', ', ');
 
-        //dd($rol);
+        //dd($role);
 
-        switch ($rol) {
+        switch ($role) {
             case 'super-admin':
                 $message = 'Welcome Super admin';
 

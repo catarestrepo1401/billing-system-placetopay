@@ -14,8 +14,8 @@ class ImportController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permission:import invoices'])->only('invoices');
-        $this->middleware(['permission:import users'])->only('users');
+        $this->middleware(['permission:dashboard.invoices.import'])->only('invoices');
+        $this->middleware(['permission:dashboard.users.import'])->only('users');
     }
 
     public function invoices(ImportRequest $request)

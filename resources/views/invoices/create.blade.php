@@ -14,12 +14,12 @@
                     {!! Field::select('customer') !!}
 
                     <div class="btn-group float-right">
-                        @can('read invoices')
+                        @can('dashboard.invoice')
                         <a href="{{ route('invoices.index') }}" class="btn">
                             {{ __('Return') }}
                         </a>
                         @endcan
-                        @can('create invoice')
+                        @can('dashboard.invoice.create')
                         <button type="submit" class="btn btn-primary">
                             {{ __('Create') }}
                         </button>

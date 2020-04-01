@@ -6,7 +6,7 @@
             <h1>{{ __('User manager') }}</h1>
         </div>
 
-        @can('create user')
+        @can('dashboard.user.create')
         <div>
             <a href="{{ route('users.create') }}" class="btn btn-primary">
                 {{  __('Create') }}
@@ -46,7 +46,7 @@
                     <th>{{ __('First name') }}</th>
                     <th>{{ __('Last name') }}</th>
                     <th>{{ __('Email') }}</th>
-                    <th>{{ __('Rol') }}</th>
+                    <th>{{ __('Role') }}</th>
                 </tr>
                 </thead>
 
@@ -57,9 +57,9 @@
                         <td>{{ $user->first_name }}</td>
                         <td>{{ $user->last_name }}</td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ $user->rol }}</td>
+                        <td>{{ ucfirst($user->role) }}</td>
 
-                        @can('read users')
+                        @can('dashboard.user')
                         <td>
                             <a href="{{ route('users.show', $user) }}" class="btn btn-primary btn-sm float-right">
                                 {{  __('Details') }}

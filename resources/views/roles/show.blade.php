@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="mb-3">
-        <h1>{{ __('Roles details') }}</h1>
+        <h1>{{ __('Role details') }}</h1>
     </div>
     <div class="row">
         <div class="col-md-5">
@@ -20,24 +20,38 @@
                         <tr>
                             <th>{{ __('Registration date') }}</th>
                             <td>{{ $role->created_at->toDateString() }}</td>
+                        </tr>
+                        <tr>
                             <th>{{ __('Last update') }}</th>
                             <td>{{ $role->updated_at->toDateString() }}</td>
                         </tr>
+                            <div>
+                                <td>
+                                    <th>
+                                        <h5>{{ __('Permissions') }}</h5>
+                                    </th>
+                                    @foreach($role->permissions as $permission)
+                                        <li class="list-group-item list-group-item-secondary">
+                                            {{ $permission->name }}
+                                        </li>
+                                    @endforeach
+                                </td>
+                            </div>
                     </table>
 
                     {!! Form::open(['route' => ['roles.destroy', $role], 'method' => 'DELETE']) !!}
                     <div class="btn-group float-right">
-                        @can('read roles')
+                        @can('dashboard.role')
                             <a href="{{ route('roles.index', $role) }}" class="btn btn-info">
                                 {{ __('Return') }}
                             </a>
                         @endcan
-                        @can('update role')
+                        @can('dashboard.role.edit')
                             <a href="{{ route('roles.edit', $role) }}" class="btn btn-success">
                                 {{ __('Edit') }}
                             </a>
                         @endcan
-                        @can('delete role')
+                        @can('dashboard.role.delete')
                             <button type="submit" class="btn btn-danger">
                                 {{ __('Delete') }}
                             </button>

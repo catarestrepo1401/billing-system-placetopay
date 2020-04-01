@@ -29,17 +29,17 @@
 
                     {!! Form::open(['route' => ['items.destroy', $item], 'method' => 'DELETE']) !!}
                     <div class="btn-group float-right">
-                        @can('read items')
+                        @can('dashboard.item')
                             <a href="{{ route('items.index', $item) }}" class="btn btn-info">
                                 {{ __('Return') }}
                             </a>
                         @endcan
-                        @can('update item')
+                        @can('dashboard.item.edit')
                             <a href="{{ route('items.edit', $item) }}" class="btn btn-success">
                                 {{ __('Edit') }}
                             </a>
                         @endcan
-                        @can('delete item')
+                        @can('dashboard.item.delete')
                             <button type="submit" class="btn btn-danger">
                                 {{ __('Delete') }}
                             </button>

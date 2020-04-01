@@ -12,10 +12,10 @@ class ItemController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permission:read items'])->only(['index', 'show']);
-        $this->middleware(['permission:create item'])->only('store');
-        $this->middleware(['permission:update item'])->only('update');
-        $this->middleware(['permission:delete item'])->only('destroy');
+        $this->middleware(['permission:dashboard.item'])->only(['index', 'show']);
+        $this->middleware(['permission:dashboard.item.create'])->only(['create', 'store']);
+        $this->middleware(['permission:dashboard.item.edit'])->only(['edit', 'update']);
+        $this->middleware(['permission:dashboard.item.delete'])->only('destroy');
     }
 
     /**

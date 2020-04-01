@@ -24,7 +24,7 @@ class CreatePermissionTables extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('guard_name')->default('web');
-            $table->string('special')->default('no-access');
+            $table->string('special')->default('default');
             $table->timestamps();
         });
 

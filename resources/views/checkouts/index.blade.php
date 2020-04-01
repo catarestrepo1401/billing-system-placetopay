@@ -22,9 +22,9 @@
                          class="img-fluid" alt="Placetopay">
                 </div>
             </div>
-            @can('url place_to_pay for payment')
+            @can('dashboard.checkout.execute')
             <button type="submit" class="btn btn-primary btn-block">
-                Continuar
+                Continue
             </button>
             @endcan
             {{ Form::close() }}

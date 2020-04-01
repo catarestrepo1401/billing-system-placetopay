@@ -14,13 +14,13 @@
                     @include('payments.fields')
 
                     <div class="btn-group float-right">
-                        @can('read payments')
+                        @can('dashboard.payment')
                         <a href="{{ route('payments.index') }}" class="btn btn-info">
                             {{ __('Return') }}
                         </a>
                         @endcan
 
-                        @can('create payment')
+                        @can('dashboard.payment.create')
                         <button type="submit" class="btn btn-primary">
                             {{ __('Create') }}
                         </button>

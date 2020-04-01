@@ -13,13 +13,13 @@
                     @include('users.fields')
 
                     <div class="btn-group float-right">
-                        @can('read users')
+                        @can('dashboard.user')
                         <a href="{{ route('users.index') }}" class="btn">
                             {{ __('Return') }}
                         </a>
                         @endcan
 
-                        @can('create user')
+                        @can('dashboard.user.create')
                         <button type="submit" class="btn btn-primary">
                             {{ __('Create') }}
                         </button>

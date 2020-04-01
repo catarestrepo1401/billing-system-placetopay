@@ -49,7 +49,7 @@
                         <td>{{ __(ucfirst($payment->method)) }}</td>
                         <td>${{ number_format($payment->amount, 2, ',', '.') }}</td>
 
-                        @can('read payments')
+                        @can('dashboard.payment')
                         <td>
                             <a href="{{ route('payments.show', $payment) }}" class="btn btn-primary btn-sm float-right">
                                 {{  __('Details') }}

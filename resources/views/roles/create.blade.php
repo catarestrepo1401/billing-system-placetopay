@@ -9,19 +9,17 @@
             <div class="card">
                 <div class="card-body">
                     {!! Form::open(['route' => 'roles.store', 'method' => 'POST']) !!}
-
                     {!! Field::text('name', null, ['ph' => __('Name')]) !!}
-
+                    <h4>{{ __('Permissions') }}</h4>
                     {!! Form::checkboxes('permissions', $permissions) !!}
-
                     <div class="btn-group float-right">
-                        @can('read roles')
+                        @can('dashboard.role')
                             <a href="{{ route('roles.index') }}" class="btn btn-info">
                                 {{ __('Return') }}
                             </a>
                         @endcan
 
-                        @can('create role')
+                        @can('dashboard.role.create')
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Create') }}
                             </button>

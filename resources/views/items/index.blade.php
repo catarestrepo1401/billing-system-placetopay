@@ -6,7 +6,7 @@
             <h1>{{ __('Item manager') }}</h1>
         </div>
 
-        @can('create item')
+        @can('dashboard.item.create')
             <div>
                 <a href="{{ route('items.create') }}" class="btn btn-primary">
                     {{  __('Create') }}
@@ -57,7 +57,7 @@
                         <td>{{ $item->name }}</td>
                         <td>${{ number_format($item->price, 2, ',', '.') }}</td>
 
-                        @can('read items')
+                        @can('dashboard.item')
                             <td>
                                 <a href="{{ route('items.show', $item) }}" class="btn btn-primary btn-sm float-right">
                                     {{  __('Details') }}

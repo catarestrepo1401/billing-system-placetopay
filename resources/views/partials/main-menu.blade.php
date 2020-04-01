@@ -16,35 +16,35 @@
                         {{ __('Home') }}
                     </a>
                 </li>
-                @can('read users')
+                @can('dashboard.user')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('users.index') }}">
                         {{ __('Users') }}
                     </a>
                 </li>
                 @endcan
-                @can('read roles')
+                @can('dashboard.role')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('roles.index') }}">
                             {{ __('Roles') }}
                         </a>
                     </li>
                 @endcan
-                @can('read items')
+                @can('dashboard.item')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('items.index') }}">
                         {{ __('Items') }}
                     </a>
                 </li>
                 @endcan
-                @can('read invoices')
+                @can('dashboard.invoice')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('invoices.index') }}">
                         {{ __('Invoices') }}
                     </a>
                 </li>
                 @endcan
-                @can('read payments')
+                @can('dashboard.payment')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('payments.index') }}">
                         {{ __('Payments') }}

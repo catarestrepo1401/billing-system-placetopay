@@ -16,12 +16,12 @@ class ExportController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permission:export invoices excel'])->only('invoices');
-        $this->middleware(['permission:export invoices csv'])->only('invoices');
-        $this->middleware(['permission:export invoices txt'])->only('invoices');
-        $this->middleware(['permission:export users excel'])->only('users');
-        $this->middleware(['permission:export users csv'])->only('users');
-        $this->middleware(['permission:export users txt'])->only('users');
+        $this->middleware(['permission:dashboard.invoices.exportExcel'])->only('invoices');
+        $this->middleware(['permission:dashboard.invoices.exportCsv'])->only('invoices');
+        $this->middleware(['permission:dashboard.invoices.exportTxt'])->only('invoices');
+        $this->middleware(['permission:dashboard.users.exportExcel'])->only('users');
+        $this->middleware(['permission:dashboard.users.exportCsv'])->only('users');
+        $this->middleware(['permission:dashboard.users.exportTxt'])->only('users');
     }
 
     //invoices export

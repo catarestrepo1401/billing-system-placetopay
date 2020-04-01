@@ -13,11 +13,12 @@ class InvoiceController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permission:read invoices'])->only(['index', 'show']);
-        $this->middleware(['permission:create invoice'])->only('store');
-        $this->middleware(['permission:update invoice'])->only('update');
-        $this->middleware(['permission:delete invoice'])->only('destroy');
+        $this->middleware(['permission:dashboard.invoice'])->only(['index', 'show']);
+        $this->middleware(['permission:dashboard.invoice.create'])->only(['create', 'store']);
+        $this->middleware(['permission:dashboard.invoice.edit'])->only(['edit', 'update']);
+        $this->middleware(['permission:dashboard.invoice.delete'])->only('destroy');
     }
+
     /**
      * Display a listing of the resource.
      *

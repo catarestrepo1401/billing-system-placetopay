@@ -13,13 +13,13 @@
                     @include('users.fields')
 
                     <div class="btn-group float-right">
-                        @can('read users')
+                        @can('dashboard.user')
                         <a href="{{ route('users.show', $user) }}" class="btn btn-info">
                             {{ __('Return') }}
                         </a>
                         @endcan
 
-                        @can('update user')
+                        @can('dashboard.user.edit')
                         <button type="submit" class="btn btn-primary">
                             {{ __('Save changes') }}
                         </button>

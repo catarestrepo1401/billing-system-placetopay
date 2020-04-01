@@ -15,14 +15,14 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::prefix('checkouts')->name('checkouts.')->group(function () {
-    Route::get('/initialized/{invoice}', 'CheckoutController@index')->name('index')
-        ->middleware('permission:read checkouts');
+    Route::get('/index/{invoice}', 'CheckoutController@index')->name('index')
+        ->middleware('permission:dashboard.checkout');
     Route::post('/execute/{invoice}', 'CheckoutController@execute')->name('execute')
-        ->middleware('permission:url place_to_pay for payment');
+        ->middleware('permission:dashboard.checkout.execute');
     Route::get('/process/{payment}', 'CheckoutController@process')->name('process')
-        ->middleware('permission:process payment');
-    Route::get('/checkouts/{payment}/finalized', 'CheckoutController@finalized')->name('finalized')
-        ->middleware('permission:finalized payment');
+        ->middleware('permission:dashboard.checkout.process');
+    Route::get('/{payment}/finalized', 'CheckoutController@finalized')->name('finalized')
+        ->middleware('permission:dashboard.checkout.finalized');
 });
 
 Auth::routes(['register' => false]);

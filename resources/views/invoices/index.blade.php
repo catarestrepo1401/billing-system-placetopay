@@ -6,7 +6,7 @@
             <h1>{{ __('Invoice manager') }}</h1>
         </div>
 
-        @can('create invoice')
+        @can('dashboard.invoice.create')
             <div>
                 <a href="{{ route('invoices.create') }}" class="btn btn-primary">
                     {{  __('Create') }}
@@ -66,7 +66,7 @@
                         <td>${{ number_format($invoice->net, 2, ',', '.') }}</td>
                         <td>${{ number_format($invoice->total, 2, ',', '.') }}</td>
 
-                        @can('read invoices')
+                        @can('dashboard.invoice')
                             <td>
                                 <a href="{{ route('invoices.show', $invoice) }}" class="btn btn-primary btn-sm float-right">
                                     {{  __('Details') }}

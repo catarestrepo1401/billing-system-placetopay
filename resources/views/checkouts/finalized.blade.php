@@ -45,7 +45,7 @@
                 </tbody>
             </table>
             <div>
-                @can('finalized payment')
+                @can('dashboard')
                 <a href="{{ route('home') }}" class="btn btn-primary btn-block">
                     {{ __('Return to billing-system') }}
                 </a>

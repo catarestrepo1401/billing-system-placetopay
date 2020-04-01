@@ -8,13 +8,13 @@
         </div>
         <div>
             <div class="btn-group">
-                @can('read invoices')
+                @can('dashboard.invoice')
                     <a href="{{ route('invoices.show', $invoice) }}" class="btn btn-info">
                         {{ __('Return') }}
                     </a>
                 @endcan
 
-                @can('update invoice')
+                @can('dashboard.invoice.edit')
                     <button type="submit" class="btn btn-primary">
                         {{ __('Save changes') }}
                     </button>

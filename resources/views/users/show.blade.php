@@ -29,17 +29,17 @@
 
                     {!! Form::open(['route' => ['users.destroy', $user], 'method' => 'DELETE']) !!}
                     <div class="btn-group float-right">
-                        @can('read users')
+                        @can('dashboard.user')
                         <a href="{{ route('users.index', $user) }}" class="btn btn-info">
                             {{ __('Return') }}
                         </a>
                         @endcan
-                        @can('update user')
+                        @can('dashboard.user.edit')
                         <a href="{{ route('users.edit', $user) }}" class="btn btn-success">
                             {{ __('Edit') }}
                         </a>
                         @endcan
-                        @can('delete user')
+                        @can('dashboard.user.delete')
                         <button type="submit" class="btn btn-danger">
                             {{ __('Delete') }}
                         </button>
