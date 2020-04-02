@@ -27,26 +27,30 @@
                         </tr>
                         <tr>
                             <th>{{ __('Role') }}</th>
-                            <td colspan="3">{{ ucfirst($user->role) }}</td>
+                            <td colspan="3">
+                                @foreach($user->roles as $role)
+                                    {{ $role->name }},
+                                @endforeach
+                            </td>
                         </tr>
                     </table>
 
                     {!! Form::open(['route' => ['users.destroy', $user], 'method' => 'DELETE']) !!}
                     <div class="btn-group float-right">
                         @can('dashboard.user')
-                        <a href="{{ route('users.index', $user) }}" class="btn btn-info">
-                            {{ __('Return') }}
-                        </a>
+                            <a href="{{ route('users.index', $user) }}" class="btn btn-info">
+                                {{ __('Return') }}
+                            </a>
                         @endcan
                         @can('dashboard.user.edit')
-                        <a href="{{ route('users.edit', $user) }}" class="btn btn-success">
-                            {{ __('Edit') }}
-                        </a>
+                            <a href="{{ route('users.edit', $user) }}" class="btn btn-success">
+                                {{ __('Edit') }}
+                            </a>
                         @endcan
                         @can('dashboard.user.delete')
-                        <button type="submit" class="btn btn-danger">
-                            {{ __('Delete') }}
-                        </button>
+                            <button type="submit" class="btn btn-danger">
+                                {{ __('Delete') }}
+                            </button>
                         @endcan
                     </div>
                     {!! Form::close() !!}
