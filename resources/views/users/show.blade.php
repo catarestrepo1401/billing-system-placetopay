@@ -25,6 +25,10 @@
                             <th>{{ __('Email') }}</th>
                             <td colspan="3">{{ $user->email }}</td>
                         </tr>
+                        <tr>
+                            <th>{{ __('Role') }}</th>
+                            <td colspan="3">{{ ucfirst($user->role) }}</td>
+                        </tr>
                     </table>
 
                     {!! Form::open(['route' => ['users.destroy', $user], 'method' => 'DELETE']) !!}

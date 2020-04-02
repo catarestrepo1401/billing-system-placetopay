@@ -27,7 +27,8 @@
                         </tr>
                             <div>
                                 <th>{{ __('Permissions') }}</th>
-                                <td>@foreach($role->permissions as $permission)
+                                <td>
+                                    @foreach($role->permissions as $permission)
                                         <li class="list-group-item list-group-item-secondary">
                                             {{ $permission->name }}
                                         </li>
@@ -42,11 +43,13 @@
                                 {{ __('Return') }}
                             </a>
                         @endcan
+
                         @can('dashboard.role.edit')
                             <a href="{{ route('roles.edit', $role) }}" class="btn btn-success">
                                 {{ __('Edit') }}
                             </a>
                         @endcan
+
                         @can('dashboard.role.delete')
                             <button type="submit" class="btn btn-danger">
                                 {{ __('Delete') }}

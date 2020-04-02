@@ -1,9 +1,10 @@
-
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\PermissionRegistrar;
 
 class RolesAndPermissions extends Seeder
 {
@@ -15,7 +16,7 @@ class RolesAndPermissions extends Seeder
     public function run()
     {
         // Reset cached roles and permissions
-        app()['cache']->forget('spatie.permission.cache');
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         // create permissions
         Permission::create(['name' => 'dashboard']);
@@ -65,12 +66,18 @@ class RolesAndPermissions extends Seeder
         Permission::create(['name' => 'dashboard.users.exportCsv']);
         Permission::create(['name' => 'dashboard.users.exportTxt']);
 
-        // create roles and assign created permissions
-        //role1 super-admin all permissions
-        $role1 = Role::create(['name' => 'super-admin']);
-        $role1->givePermissionTo(Permission::all());
+        // create roles and assign existing permissions
+        $role1 = Role::create(['name' => 'guess']);
+        $role1->givePermissionTo('dashboard');
+        $role1->givePermissionTo('dashboard.user');
+        $role1->givePermissionTo('dashboard.invoice');
+        $role1->givePermissionTo('dashboard.item');
+        $role1->givePermissionTo('dashboard.payment');
+        $role1->givePermissionTo('dashboard.checkout');
+        $role1->givePermissionTo('dashboard.checkout.execute');
+        $role1->givePermissionTo('dashboard.checkout.process');
+        $role1->givePermissionTo('dashboard.checkout.finalized');
 
-        //role2: moderator, permissions
         $role2 = Role::create(['name' => 'moderator']);
         $role2->givePermissionTo('dashboard');
         $role2->givePermissionTo('dashboard.user');
@@ -99,16 +106,39 @@ class RolesAndPermissions extends Seeder
         $role2->givePermissionTo('dashboard.users.exportCsv');
         $role2->givePermissionTo('dashboard.users.exportTxt');
 
-        //role3: guess, permissions
-        $role3 = Role::create(['name' => 'guess']);
-        $role2->givePermissionTo('dashboard');
-        $role3->givePermissionTo('dashboard.user');
-        $role3->givePermissionTo('dashboard.invoice');
-        $role3->givePermissionTo('dashboard.item');
-        $role3->givePermissionTo('dashboard.payment');
-        $role3->givePermissionTo('dashboard.checkout');
-        $role3->givePermissionTo('dashboard.checkout.execute');
-        $role3->givePermissionTo('dashboard.checkout.process');
-        $role3->givePermissionTo('dashboard.checkout.finalized');
+        $role3 = Role::create(['name' => 'super-admin']);
+        $role3->givePermissionTo(Permission::all());
+        // gets all permissions via Gate::before rule; see AuthServiceProvider
+
+        // create demo users
+        $user = Factory(App\Models\User::class)->create([
+            'identification' => '789',
+            'first_name' => 'Guess',
+            'last_name' => 'User',
+            'email' => 'guess@demo.com',
+            'password' => 'guessuser',
+            'role' => 'guess'
+        ]);
+        $user->assignRole($role1);
+
+        $user = Factory(App\Models\User::class)->create([
+            'identification' => '456',
+            'first_name' => 'Moderator',
+            'last_name' => 'User',
+            'email' => 'moderator@demo.com',
+            'password' => 'moderatoruser',
+            'role' => 'moderator'
+        ]);
+        $user->assignRole($role2);
+
+        $user = Factory(App\Models\User::class)->create([
+            'identification' => '123',
+            'first_name' => 'Admin',
+            'last_name' => 'User',
+            'email' => 'admin@demo.com',
+            'password' => 'admin',
+            'role' => 'super-admin'
+        ]);
+        $user->assignRole($role3);
     }
 }

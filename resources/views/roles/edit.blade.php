@@ -18,7 +18,6 @@
                                     {{ __('Return') }}
                                 </a>
                             @endcan
-
                             @can('dashboard.role.edit')
                                 <button type="submit" class="btn btn-success">
                                     {{ __('Edit') }}

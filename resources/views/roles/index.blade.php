@@ -5,7 +5,6 @@
         <div>
             <h1>{{ __('Roles manager') }}</h1>
         </div>
-
         @can('dashboard.role.create')
             <div>
                 <a href="{{ route('roles.create') }}" class="btn btn-primary">
@@ -31,7 +30,6 @@
                         <td>{{ $role->created_at->toDateString() }}</td>
                         <td>{{ __(ucfirst($role->name)) }}</td>
                         <td>{{ __(ucfirst($role->guard_name)) }}</td>
-
                         @can('dashboard.role')
                             <td>
                                 <a href="{{ route('roles.show', $role) }}" class="btn btn-primary btn-sm float-right">
@@ -43,7 +41,6 @@
                 @endforeach
                 </tbody>
             </table>
-
             {{ $roles->appends(request()->all())->links() }}
         </div>
     </div>

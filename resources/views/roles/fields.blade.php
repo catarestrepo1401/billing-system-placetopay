@@ -13,8 +13,8 @@
     <label>{{ Form::radio('special', 'no-access') }} No-access</label>
 </div>
 <br>
-<h3>Permissions list</h3>
 <div class="form-group">
+    <h3>Permissions list</h3>
     <ul class="list-unstyled">
         @foreach($permissions as $permission)
             <li>
