@@ -23,6 +23,7 @@ Route::prefix('checkouts')->name('checkouts.')->group(function () {
         ->middleware('permission:dashboard.checkout.process');
     Route::get('/{payment}/finalized', 'CheckoutController@finalized')->name('finalized')
         ->middleware('permission:dashboard.checkout.finalized');
+    Route::get('{invoice}/paid', 'CheckoutController@index')->name('paid');
 });
 
 Auth::routes(['register' => false]);

@@ -32,9 +32,18 @@ class CheckoutController extends Controller
         $invoice = Invoice::where('document_number', $document_number)
             ->firstOrFail();
 
+        $paid = $invoice->payments()->where('status', 'approved')->sum('amount');
+
+        if ($invoice->total == $paid){
+            return view('checkouts.paid', compact('paid'));
+        }
+
+        //dd($invoice);
+        //dd($document_number);
+
         return view('checkouts.index', compact('invoice'));
     }
-
+    
     public function execute(Request $request, $document_number)
     {
         $invoice = Invoice::where('document_number', $document_number)
