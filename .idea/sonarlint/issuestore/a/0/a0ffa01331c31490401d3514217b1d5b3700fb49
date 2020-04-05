@@ -1,0 +1,5 @@
+
+^	php:S11927"IDefine a constant instead of duplicating this literal "password" 3 times.( ²ß
+\	php:S11925"GDefine a constant instead of duplicating this literal "string" 3 times.(Óÿ°ÿ
+^	php:S11925"IDefine a constant instead of duplicating this literal "required" 3 times.(Óÿ°ÿ
+[	php:S11926"FDefine a constant instead of duplicating this literal "email" 4 times.(ƒîĞÓ

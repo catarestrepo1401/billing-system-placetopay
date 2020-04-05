@@ -23,12 +23,13 @@
                     </a>
                 </li>
                 @endcan
-
+                @can('dashboard.role')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('roles.index') }}">
                             {{ __('Roles') }}
                         </a>
                     </li>
+                @endcan
                 @can('dashboard.item')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('items.index') }}">
