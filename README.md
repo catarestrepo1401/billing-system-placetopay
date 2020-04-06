@@ -6,6 +6,27 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
+<h1 align="center">Billing System Placetopay</h1>
+
+<h3>Configuration</h3>
+
+The first thing you must do to configure the project is the following:
+
+1.Configure the .env file
+
+2. Use the following commands in the terminal:
+
+composer install
+npm i
+npm run dev
+php artisan key: generate
+php artisan migrate: fresh --seed
+composer dump-autoload
+
+<h3 align="center">Instructions to import:</h3>
+1. It is important to know that if the invoice or user files already exist, they will not be imported again.
+2. The supported formats for bulk import of invoices and users are as follows: xls and xlsx.
+3. The 'id' field (the first column) must be removed from the excel file to be able to import later, since if it is not deleted the 'id' would be duplicated.
 
 ## About Laravel
 
