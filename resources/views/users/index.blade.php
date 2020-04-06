@@ -46,7 +46,6 @@
                     <th>{{ __('First name') }}</th>
                     <th>{{ __('Last name') }}</th>
                     <th>{{ __('Email') }}</th>
-                    <th>{{ __('Role') }}</th>
                 </tr>
                 </thead>
 
@@ -57,7 +56,6 @@
                         <td>{{ $user->first_name }}</td>
                         <td>{{ $user->last_name }}</td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ ucfirst($user->role) }}</td>
 
                         @can('dashboard.user')
                         <td>

@@ -26,7 +26,7 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'identification' => ['required','max:12',
-            Rule::unique('users', 'identification')
+                Rule::unique('users', 'identification')
             ],
             'first_name'     => ['required'],
             'last_name'      => ['required'],

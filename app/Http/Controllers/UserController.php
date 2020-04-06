@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Styde\Html\Facades\Alert;
@@ -42,6 +43,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        $roles = Role::all()->pluck('name', 'id');
         return view('users.create');
     }
 
@@ -71,6 +73,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $roles = Role::all()->pluck('name', 'id');
         return view('users.show', compact('user'));
     }
 

@@ -10,7 +10,11 @@
                 <div class="card-body">
                     {!! Form::open(['route' => 'users.store', 'method' => 'POST']) !!}
 
-                    @include('users.fields')
+                    {!! Field::number('identification', null, ['ph' => __('Identification')]) !!}
+                    {!! Field::text('first_name', null, ['ph' => __('First name')]) !!}
+                    {!! Field::text('last_name', null, ['ph' => __('Last name')]) !!}
+                    {!! Field::email('email', null, ['ph' => __('Email')]) !!}
+                    {!! Field::password('password', ['ph' => __('Password')]) !!}
 
                     <div class="btn-group float-right">
                         @can('dashboard.user')
