@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Invoice::class, function (Faker $faker) {
     return [
         'document_number' => $faker->unique()->numberBetween(10000, 99999),
-        'document_type' => $faker->numberBetween(10, 20),
+        'document_type' => $faker->randomElement(['bill_of_sale']),
         'expired_at' => now()->addDays(rand(15, 30)),
         'delivery_at' => now()->addDays(rand(15, 30)),
         'subtotal' => $faker->randomFloat(2, 100, $max = 999999),

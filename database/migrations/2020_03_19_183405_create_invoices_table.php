@@ -17,7 +17,7 @@ class CreateInvoicesTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('document_number')->unique();
-            $table->bigInteger('document_type');
+            $table->string('document_type');
             $table->dateTime('expired_at');
             $table->dateTime('delivery_at')->nullable();
             $table->decimal('subtotal', 12, 2)->default(0);

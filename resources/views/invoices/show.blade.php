@@ -79,41 +79,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <table class="table table-borderless table-sm">
-                        <thead>
-                        <tr>
-                            <th>{{ __('Type') }}</th>
-                            <th>{{ __('Code') }}</th>
-                            <th>{{ __('Name') }}</th>
-                            <th>{{ __('Description') }}</th>
-                            <th>{{ __('Quantity') }}</th>
-                            <th>{{ __('Unit price') }}</th>
-                            <th>{{ __('Total') }}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
 
-                        @if ($invoice->items->isEmpty())
-                            <tr>
-                                <td colspan="7" class="text-center">
-                                    {{ __('No items have been added.') }}
-                                </td>
-                            </tr>
-                        @endif
-
-                        @foreach($invoice->items as $item)
-                            <tr>
-                                <td>{{ $item->type }}</td>
-                                <td>{{ $item->code }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->pivot->description }}</td>
-                                <td>{{ $item->pivot->quantity }}</td>
-                                <td>{{ $item->pivot->unit_price }}</td>
-                                <td>{{ $item->pivot->total }}</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>

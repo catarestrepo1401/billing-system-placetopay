@@ -43,7 +43,6 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::all()->pluck('name', 'id');
         return view('users.create');
     }
 
@@ -73,7 +72,6 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $roles = Role::all()->pluck('name', 'id');
         return view('users.show', compact('user'));
     }
 
@@ -105,6 +103,8 @@ class UserController extends Controller
         $user->update();
 
         $user->syncRoles($request->get('roles'));
+
+        Alert::success(__('The record was successfully updated.'));
 
         return redirect()->route('users.show', $user);
     }
