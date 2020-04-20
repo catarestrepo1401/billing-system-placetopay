@@ -27,7 +27,7 @@ class CheckoutController extends Controller
         ]);
     }
 
-    public function index(Request $request, $document_number)
+    public function index(Invoice $document_number)
     {
         $invoice = Invoice::where('document_number', $document_number)
             ->firstOrFail();
@@ -78,12 +78,14 @@ class CheckoutController extends Controller
 
         if ($response->isSuccessful()) {
             $payment->update(['identifier' => $response->requestId]);
-
+            // $response->processUrl();
             //dd($payment);
 
             return redirect()->to($response->processUrl());
         } else {
-            dd($response->status()->message());
+            //dd($response->status()->message());
+            Alert::info(__('el pago no se pudo realizar.'));
+            return redirect()->route('invoices.show', $invoice);
         }
     }
 

@@ -3,17 +3,19 @@
 namespace App\Exports;
 
 use App\Models\Invoice;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromQuery;
 
-class InvoicesExport implements FromCollection
+// y ahora?
+class InvoicesExport implements FromQuery, ShouldQueue
 {
     use Exportable;
     /**
-    * @return \Illuminate\Support\Collection
+    * @return \Illuminate\Database\Eloquent\Builder
     */
-    public function collection()
+    public function query()
     {
-        return Invoice::all();
+        return Invoice::query();
     }
 }

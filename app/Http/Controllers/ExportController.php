@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\InvoicesExport;
 use App\Exports\UsersExport;
+use App\Jobs\NotifyUserOfCompletedExport;
 use App\Models\Invoice;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -41,7 +42,19 @@ class ExportController extends Controller
         if ($format == 'xlsx' || $format == 'csv') {
             Alert::success(__('The invoices was successfully exported.'));
 
-            return Excel::download(new InvoicesExport, "$fileName.$format");
+            //return Excel::download(new InvoicesExport, "$fileName.$format");
+
+
+
+            (new InvoicesExport)->queue("$fileName.$format")->chain([
+                new NotifyUserOfCompletedExport(auth()->user())
+            ]);
+
+            // listo, ya esta funcionandoeso es todo?
+            // si ya lo mandate a las colas y como se que lo mande alla? como miro eso? en la tabla? de queue
+            // aja hay viene otra cosa xd
+            return redirect()->route('import-export');
+
         } elseif ($format == 'txt') {
             $invoices = Invoice::all()->toJson();
 
@@ -49,6 +62,7 @@ class ExportController extends Controller
 
             Alert::success(__('The invoices was successfully exported.'));
 
+            //aja que vas a hacer entonces?
             return Storage::download("invoices/$fileName.$format");
         } else {
             return 'Format not supported';

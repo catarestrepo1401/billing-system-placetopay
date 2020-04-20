@@ -67,7 +67,8 @@ class CheckoutController extends Controller
             ], 200);
 
         } else {
-            dd($response->status()->message());
+            Alert::info(__('Payment could not be made.'));
+            return redirect()->route('invoices.show', $invoice);
         }
     }
 

@@ -27,23 +27,6 @@
                         </tr>
                     </table>
 
-                    {!! Form::open(['route' => ['payments.destroy', $payment], 'method' => 'DELETE']) !!}
-                    <div class="btn-group float-right">
-                        <a href="{{ route('payments.index', $payment) }}" class="btn btn-info">
-                            {{ __('Return') }}
-                        </a>
-                        @can('dashboard.payment.edit')
-                            <a href="{{ route('payments.edit', $payment) }}" class="btn btn-success">
-                                {{ __('Edit') }}
-                            </a>
-                        @endcan
-                        @can('dashboard.payment.delete')
-                            <button type="submit" class="btn btn-danger">
-                                {{ __('Delete') }}
-                            </button>
-                        @endcan
-                    </div>
-                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
